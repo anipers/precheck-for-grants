@@ -6,144 +6,147 @@
   <title>Hub71 Readiness Self-Check</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --lime: #BFFF00; --lime-dark: #9ACC00; --lime-glow: rgba(191,255,0,0.3);
-      --black: #000000; --dark: #0A0A0A; --dark-2: #141414; --dark-3: #1A1A1A;
-      --white: #FFFFFF; --gray: #A0A0A0; --gray-light: #E0E0E0;
-      --green: #22c55e; --yellow: #fbbf24; --red: #ef4444;
-      --border: rgba(255,255,255,0.1); --border-hover: rgba(191,255,0,0.3);
+      --blue: #124ef5; --blue-dark: #0026ab; --blue-light: #4bace9;
+      --white: #FFFFFF; --gray-bg: #f5f7fa; --gray-light: #eff1f5; --gray: #6b7280; --gray-dark: #374151;
+      --black: #1a1a1a;
+      --green: #22c55e; --green-bg: #dcfce7; --yellow: #f59e0b; --yellow-bg: #fef3c7; --red: #ef4444; --red-bg: #fee2e2;
+      --border: #e5e7eb;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      color: var(--white); background: var(--black); min-height: 100vh; line-height: 1.6;
+      font-family: 'Poppins', -apple-system, sans-serif;
+      color: var(--black); background: var(--white); min-height: 100vh; line-height: 1.6;
     }
     main { padding: 2rem; max-width: 1200px; margin: 0 auto; }
-    h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
-    h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1rem; }
-    h2 { font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 1rem; }
-    h3 { font-size: 1.25rem; margin-bottom: .5rem; font-weight: 600; }
+    h1, h2, h3 { font-weight: 700; color: var(--blue-dark); }
+    h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); margin-bottom: 1rem; }
+    h2 { font-size: clamp(1.25rem, 3vw, 1.75rem); margin-bottom: 1rem; }
+    h3 { font-size: 1.1rem; margin-bottom: .5rem; font-weight: 600; }
     p { color: var(--gray); margin-bottom: .5rem; }
-    .accent { color: var(--lime); }
-    .step { animation: fadeIn .5s ease-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .step { animation: fadeIn .4s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     
     /* Header */
-    .header { text-align: center; margin-bottom: 3rem; }
-    .header p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+    .header { text-align: center; margin-bottom: 3rem; padding: 2rem 0; background: var(--gray-bg); margin: -2rem -2rem 2rem -2rem; padding: 3rem 2rem; }
+    .header h1 { color: var(--blue-dark); }
+    .header p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; color: var(--gray-dark); }
     .logo { display: inline-flex; align-items: center; gap: .5rem; margin-bottom: 1.5rem; }
-    .logo-text { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.5rem; }
-    .logo-badge { background: var(--lime); color: var(--black); padding: .25rem .5rem; border-radius: .25rem; font-size: .75rem; font-weight: 600; }
+    .logo-text { font-weight: 700; font-size: 1.5rem; color: var(--blue); }
+    .logo-badge { background: var(--blue); color: var(--white); padding: .25rem .75rem; font-size: .75rem; font-weight: 600; }
     
     /* Grid */
     .grid { display: grid; gap: 1.5rem; margin: 2rem 0; }
     @media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1024px) { .grid.v4 { grid-template-columns: repeat(4, 1fr); } }
     
-    /* Cards */
+    /* Cards - КВАДРАТНЫЕ */
     .card {
-      background: var(--dark-2); border: 1px solid var(--border);
-      border-radius: 1rem; padding: 1.5rem; transition: all .3s ease;
+      background: var(--white); border: 1px solid var(--border);
+      padding: 1.5rem; transition: all .2s ease;
     }
-    .card:hover { border-color: var(--border-hover); }
+    .card:hover { border-color: var(--blue); box-shadow: 0 4px 12px rgba(18,78,245,0.1); }
     .card.clickable {
       cursor: pointer; text-align: center; min-height: 200px;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
     }
-    .card.clickable:hover { background: var(--dark-3); transform: translateY(-4px); box-shadow: 0 0 30px var(--lime-glow); }
+    .card.clickable:hover { background: var(--gray-bg); }
     .icon { font-size: 2.5rem; margin-bottom: 1rem; }
-    .card-tag { display: inline-block; background: var(--lime); color: var(--black); padding: .25rem .75rem; border-radius: 2rem; font-size: .7rem; font-weight: 600; text-transform: uppercase; margin-bottom: 1rem; }
+    .card-tag { display: inline-block; background: var(--blue); color: var(--white); padding: .25rem .75rem; font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 1rem; }
+    .card h3 { color: var(--blue-dark); }
     
-    /* Radio */
-    .radio-group { display: flex; flex-direction: column; gap: .75rem; margin-top: 1rem; }
+    /* Radio - КВАДРАТНЫЕ */
+    .radio-group { display: flex; flex-direction: column; gap: .5rem; margin-top: 1rem; }
     .radio {
       display: flex; align-items: center; padding: 1rem 1.25rem;
-      background: var(--dark); border: 1px solid var(--border);
-      border-radius: .75rem; cursor: pointer; transition: all .3s;
+      background: var(--white); border: 1px solid var(--border);
+      cursor: pointer; transition: all .2s;
     }
-    .radio:hover { border-color: var(--border-hover); background: var(--dark-2); }
+    .radio:hover { border-color: var(--blue-light); background: var(--gray-bg); }
     .radio input {
-      appearance: none; width: 20px; height: 20px; border: 2px solid var(--border);
-      border-radius: 50%; margin-right: 1rem; flex-shrink: 0; transition: all .3s; position: relative;
+      appearance: none; width: 18px; height: 18px; border: 2px solid var(--border);
+      margin-right: 1rem; flex-shrink: 0; transition: all .2s; position: relative;
     }
     .radio input:checked { border-color: currentColor; background: currentColor; }
     .radio input:checked::after {
-      content: ''; position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%); width: 8px; height: 8px;
-      background: var(--black); border-radius: 50%;
+      content: '✓'; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%); font-size: 12px; color: var(--white);
     }
+    .radio span { color: var(--gray-dark); font-size: .95rem; }
     .radio.g { color: var(--green); }
-    .radio.g:hover, .radio.g:has(input:checked) { border-color: var(--green); background: rgba(34,197,94,.1); }
+    .radio.g:hover, .radio.g:has(input:checked) { border-color: var(--green); background: var(--green-bg); }
     .radio.y { color: var(--yellow); }
-    .radio.y:hover, .radio.y:has(input:checked) { border-color: var(--yellow); background: rgba(251,191,36,.1); }
+    .radio.y:hover, .radio.y:has(input:checked) { border-color: var(--yellow); background: var(--yellow-bg); }
     .radio.r { color: var(--red); }
-    .radio.r:hover, .radio.r:has(input:checked) { border-color: var(--red); background: rgba(239,68,68,.1); }
+    .radio.r:hover, .radio.r:has(input:checked) { border-color: var(--red); background: var(--red-bg); }
     
     /* Progress */
-    .progress-wrap { margin: 1.5rem 0; }
-    .progress-label { display: flex; justify-content: space-between; margin-bottom: .5rem; font-size: .875rem; color: var(--gray); }
-    .progress { width: 100%; height: 6px; background: var(--dark-3); border-radius: 3px; overflow: hidden; }
-    .progress-fill { height: 100%; background: var(--lime); border-radius: 3px; transition: width .5s; }
+    .progress-wrap { margin: 1.5rem 0; background: var(--gray-bg); padding: 1rem 1.5rem; }
+    .progress-label { display: flex; justify-content: space-between; margin-bottom: .5rem; font-size: .875rem; color: var(--gray-dark); font-weight: 500; }
+    .progress { width: 100%; height: 8px; background: var(--border); }
+    .progress-fill { height: 100%; background: var(--blue); transition: width .4s; }
     
-    /* Buttons */
+    /* Buttons - КВАДРАТНЫЕ */
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-      padding: 1rem 2rem; font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600;
-      border: none; border-radius: .5rem; cursor: pointer; transition: all .3s;
+      padding: 1rem 2rem; font-family: 'Poppins', sans-serif; font-size: .95rem; font-weight: 600;
+      border: none; cursor: pointer; transition: all .2s; text-transform: uppercase; letter-spacing: .5px;
     }
-    .btn-primary { background: var(--lime); color: var(--black); }
-    .btn-primary:hover { background: var(--lime-dark); box-shadow: 0 0 20px var(--lime-glow); transform: translateY(-2px); }
-    .btn-secondary { background: transparent; color: var(--white); border: 1px solid var(--border); }
-    .btn-secondary:hover { border-color: var(--lime); color: var(--lime); }
-    .btn:disabled { opacity: .4; cursor: not-allowed; pointer-events: none; }
+    .btn-primary { background: var(--blue); color: var(--white); }
+    .btn-primary:hover { background: var(--blue-dark); }
+    .btn-secondary { background: var(--white); color: var(--blue); border: 2px solid var(--blue); }
+    .btn-secondary:hover { background: var(--gray-bg); }
+    .btn:disabled { opacity: .4; cursor: not-allowed; }
     
     /* Tier Badge */
-    .tier { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 1.5rem; border-radius: .5rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1rem; }
-    .tier-a { background: var(--green); color: var(--black); }
-    .tier-b { background: var(--yellow); color: var(--black); }
+    .tier { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 1.5rem; font-weight: 700; font-size: 1rem; }
+    .tier-a { background: var(--green); color: var(--white); }
+    .tier-b { background: var(--yellow); color: var(--white); }
     .tier-c { background: var(--red); color: var(--white); }
     
     /* Donut */
     .donut { position: relative; width: 180px; height: 180px; margin: 2rem auto; }
     .donut-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
-    .donut-center span { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 700; }
+    .donut-center span { display: block; font-size: 3rem; font-weight: 700; color: var(--blue-dark); }
     .donut-center small { color: var(--gray); font-size: .875rem; }
     
+    /* Result Card */
+    .result-card { background: var(--gray-bg); padding: 2rem; margin-bottom: 1.5rem; text-align: center; }
+    
     /* Action Items */
-    .action { background: var(--dark-2); border: 1px solid var(--border); border-radius: .75rem; padding: 1.25rem; margin-bottom: 1rem; }
-    .action:hover { border-color: var(--border-hover); }
-    .action h4 { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; margin-bottom: .75rem; font-family: 'Space Grotesk', sans-serif; }
-    .priority { padding: .25rem .75rem; border-radius: 2rem; font-size: .7rem; font-weight: 600; text-transform: uppercase; }
-    .priority.high { background: rgba(239,68,68,.2); color: var(--red); border: 1px solid rgba(239,68,68,.3); }
-    .priority.medium { background: rgba(251,191,36,.2); color: var(--yellow); border: 1px solid rgba(251,191,36,.3); }
-    .action p { font-size: .9rem; margin-bottom: .25rem; }
-    .action strong { color: var(--white); }
+    .action { background: var(--white); border: 1px solid var(--border); padding: 1.25rem; margin-bottom: 1rem; }
+    .action:hover { border-color: var(--blue-light); }
+    .action h4 { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; margin-bottom: .75rem; color: var(--blue-dark); }
+    .priority { padding: .25rem .75rem; font-size: .7rem; font-weight: 600; text-transform: uppercase; }
+    .priority.high { background: var(--red-bg); color: var(--red); }
+    .priority.medium { background: var(--yellow-bg); color: var(--yellow); }
+    .action p { font-size: .9rem; margin-bottom: .25rem; color: var(--gray-dark); }
+    .action strong { color: var(--black); }
     
     /* Success Story */
-    .story { background: var(--dark-2); border: 1px solid var(--border); border-radius: .75rem; padding: 1.5rem; position: relative; }
-    .story::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--lime); border-radius: .75rem 0 0 .75rem; }
-    .story .company { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.25rem; color: var(--lime); margin-bottom: .25rem; }
+    .story { background: var(--gray-bg); border-left: 4px solid var(--blue); padding: 1.5rem; }
+    .story .company { font-weight: 700; font-size: 1.25rem; color: var(--blue); margin-bottom: .25rem; }
     .signals { display: flex; gap: .5rem; margin: 1rem 0; flex-wrap: wrap; }
-    .signal { padding: .25rem .75rem; border-radius: 2rem; font-size: .8rem; font-weight: 500; }
-    .signal.g { background: rgba(34,197,94,.15); color: var(--green); }
-    .signal.y { background: rgba(251,191,36,.15); color: var(--yellow); }
-    .signal.r { background: rgba(239,68,68,.15); color: var(--red); }
+    .signal { padding: .25rem .75rem; font-size: .8rem; font-weight: 500; }
+    .signal.g { background: var(--green-bg); color: var(--green); }
+    .signal.y { background: var(--yellow-bg); color: var(--yellow); }
+    .signal.r { background: var(--red-bg); color: var(--red); }
     .story ul { list-style: none; margin: 1rem 0; }
-    .story li { padding: .25rem 0 .25rem 1.5rem; position: relative; color: var(--gray-light); font-size: .9rem; }
-    .story li::before { content: '✓'; position: absolute; left: 0; color: var(--lime); font-weight: 700; }
+    .story li { padding: .25rem 0 .25rem 1.5rem; position: relative; color: var(--gray-dark); font-size: .9rem; }
+    .story li::before { content: '✓'; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
     .verdict { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); font-style: italic; color: var(--gray); font-size: .9rem; }
     
     /* Interpretation */
-    .interp { background: var(--dark-2); border: 1px solid var(--border); border-radius: .75rem; padding: 1.5rem; }
-    .interp h3 { color: var(--lime); }
-    .next-box { background: var(--dark-3); border-radius: .5rem; padding: 1rem; margin-top: 1rem; }
-    .next-box h4 { color: var(--lime); margin-bottom: .5rem; font-size: 1rem; }
-    .timeline { margin-top: 1rem; padding: .5rem 1rem; background: var(--lime); color: var(--black); border-radius: .25rem; display: inline-block; font-weight: 600; font-size: .875rem; }
+    .interp { background: var(--white); border: 1px solid var(--border); padding: 1.5rem; }
+    .interp h3 { color: var(--blue-dark); }
+    .next-box { background: var(--gray-bg); padding: 1rem; margin-top: 1rem; }
+    .next-box h4 { color: var(--blue); margin-bottom: .5rem; font-size: 1rem; }
+    .timeline { margin-top: 1rem; padding: .5rem 1rem; background: var(--blue); color: var(--white); display: inline-block; font-weight: 600; font-size: .875rem; }
     .points { list-style: none; margin: 1rem 0; }
-    .points li { padding: .25rem 0 .25rem 1.5rem; position: relative; color: var(--gray-light); }
-    .points.pos li::before { content: '✓'; position: absolute; left: 0; color: var(--lime); font-weight: 700; }
+    .points li { padding: .25rem 0 .25rem 1.5rem; position: relative; color: var(--gray-dark); }
+    .points.pos li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
     .points.neg li::before { content: '✗'; position: absolute; left: 0; color: var(--red); font-weight: 700; }
     
     /* Utilities */
@@ -153,6 +156,7 @@
     
     @media (max-width: 767px) {
       main { padding: 1rem; }
+      .header { margin: -1rem -1rem 1.5rem -1rem; padding: 2rem 1rem; }
       .card.clickable { min-height: 160px; padding: 1.25rem; }
       .icon { font-size: 2rem; }
       .btn { width: 100%; }
@@ -165,7 +169,7 @@
 <main id="app"></main>
 <script>
 const V = [
-  { id: 'fintech', name: 'Fintech/Web3', icon: '💳', desc: 'Payments, DeFi, Banking, Crypto', tag: 'Hub71+ Digital Assets' },
+  { id: 'fintech', name: 'Fintech / Web3', icon: '💳', desc: 'Payments, DeFi, Banking, Crypto', tag: 'Hub71+ Digital Assets' },
   { id: 'ai', name: 'AI', icon: '🤖', desc: 'Machine Learning, LLMs, Computer Vision', tag: 'Hub71+ AI' },
   { id: 'climate', name: 'ClimateTech', icon: '🌱', desc: 'Sustainability, Clean Energy, Carbon', tag: 'Hub71+ ClimateTech' },
   { id: 'edtech', name: 'EdTech', icon: '📚', desc: 'Learning, Skills, Education Platforms', tag: 'Access Programme' }
@@ -264,7 +268,7 @@ function answer(id, val) {
   const cr = C[vert], n = Object.keys(ans).length;
   const fill = $('pf'); if (fill) fill.style.width = (n / cr.length * 100) + '%';
   const cnt = $('pc'); if (cnt) cnt.textContent = n + ' / ' + cr.length;
-  const btn = $('calc'); if (btn) { btn.disabled = n !== cr.length; }
+  const btn = $('calc'); if (btn) btn.disabled = n !== cr.length;
 }
 function calc() {
   const cr = C[vert]; let g = 0, y = 0, r = 0;
@@ -283,27 +287,27 @@ function drawChart() {
   const cv = $('dc'); if (!cv) return;
   const ctx = cv.getContext('2d'), cx = 90, cy = 90, R = 75, r = 50, t = res.gp + res.yp + res.rp;
   if (!t) return; let a = -Math.PI / 2;
-  [[res.gp, '#22c55e'], [res.yp, '#fbbf24'], [res.rp, '#ef4444']].forEach(([p, c]) => {
+  [[res.gp, '#22c55e'], [res.yp, '#f59e0b'], [res.rp, '#ef4444']].forEach(([p, c]) => {
     if (p > 0) { const ang = p / t * 2 * Math.PI; ctx.beginPath(); ctx.arc(cx, cy, R, a, a + ang); ctx.arc(cx, cy, r, a + ang, a, true); ctx.closePath(); ctx.fillStyle = c; ctx.fill(); a += ang; }
   });
 }
 function render() {
   const app = $('app');
   if (step === 1) {
-    app.innerHTML = '<div class="step"><div class="header"><div class="logo"><span class="logo-text">Hub71</span><span class="logo-badge">Self-Check</span></div><h1>Are you ready for <span class="accent">Hub71</span>?</h1><p>Check your startup readiness for Hub71 programs. Select your vertical to begin the assessment.</p></div><div class="grid v4">' +
+    app.innerHTML = '<div class="step"><div class="header"><div class="logo"><span class="logo-text">Hub71</span><span class="logo-badge">Self-Check</span></div><h1>Are you ready for Hub71?</h1><p>Check your startup readiness for Hub71 programs. Select your vertical to begin the assessment.</p></div><div class="grid v4">' +
       V.map(v => '<div class="card clickable" onclick="sel(\'' + v.id + '\')"><span class="card-tag">' + v.tag + '</span><div class="icon">' + v.icon + '</div><h3>' + v.name + '</h3><p>' + v.desc + '</p></div>').join('') + '</div></div>';
   } else if (step === 2) {
     const vd = V.find(x => x.id === vert), cr = C[vert], n = Object.keys(ans).length;
-    app.innerHTML = '<div class="step"><div class="flex justify-between items-center flex-wrap gap mb"><div><h2>' + vd.icon + ' ' + vd.name + '</h2><p>Answer all questions to see your readiness score</p></div><button class="btn btn-secondary" onclick="step=1;vert=null;ans={};render()">← Back</button></div><div class="progress-wrap"><div class="progress-label"><span>Progress</span><span id="pc">' + n + ' / ' + cr.length + '</span></div><div class="progress"><div class="progress-fill" id="pf" style="width:' + (n / cr.length * 100) + '%"></div></div></div>' +
+    app.innerHTML = '<div class="step"><div class="flex justify-between items-center flex-wrap gap mb"><div><h2>' + vd.icon + ' ' + vd.name + '</h2><p>Answer all questions to see your readiness score</p></div><button class="btn btn-secondary" onclick="step=1;vert=null;ans={};render()">← BACK</button></div><div class="progress-wrap"><div class="progress-label"><span>Progress</span><span id="pc">' + n + ' / ' + cr.length + '</span></div><div class="progress"><div class="progress-fill" id="pf" style="width:' + (n / cr.length * 100) + '%"></div></div></div>' +
       cr.map((c, i) => '<div class="card mb"><h3>' + (i + 1) + '. ' + c.label + '</h3><div class="radio-group"><label class="radio g"><input type="radio" name="' + c.id + '"' + (ans[c.id] === 'g' ? ' checked' : '') + ' onchange="answer(\'' + c.id + '\',\'g\')"><span>' + c.g + '</span></label><label class="radio y"><input type="radio" name="' + c.id + '"' + (ans[c.id] === 'y' ? ' checked' : '') + ' onchange="answer(\'' + c.id + '\',\'y\')"><span>' + c.y + '</span></label><label class="radio r"><input type="radio" name="' + c.id + '"' + (ans[c.id] === 'r' ? ' checked' : '') + ' onchange="answer(\'' + c.id + '\',\'r\')"><span>' + c.r + '</span></label></div></div>').join('') +
-      '<div class="flex justify-center"><button id="calc" class="btn btn-primary"' + (n === cr.length ? '' : ' disabled') + ' onclick="calc()">Calculate Results →</button></div></div>';
+      '<div class="flex justify-center"><button id="calc" class="btn btn-primary"' + (n === cr.length ? '' : ' disabled') + ' onclick="calc()">CALCULATE RESULTS →</button></div></div>';
   } else {
     const int = I[res.tier], ss = SS[vert], plan = getPlan();
-    app.innerHTML = '<div class="step"><h1 class="text-center">Your Readiness Results</h1><div class="card text-center mb"><div class="donut"><canvas id="dc" width="180" height="180"></canvas><div class="donut-center"><span>' + res.tier + '</span><small>Tier</small></div></div><div class="mb"><span class="tier tier-' + res.tier.toLowerCase() + '">' + int.emoji + ' Tier ' + res.tier + ': ' + int.title + '</span></div><p><strong style="color:var(--green)">' + res.g + ' Green (' + res.gp + '%)</strong> · <strong style="color:var(--yellow)">' + res.y + ' Yellow (' + res.yp + '%)</strong> · <strong style="color:var(--red)">' + res.r + ' Red (' + res.rp + '%)</strong></p></div>' +
-      '<div class="interp mb"><h3>' + int.emoji + ' ' + int.sub + '</h3><h4 style="margin-top:1rem;color:var(--gray-light)">What this means:</h4><ul class="points ' + (int.neg ? 'neg' : 'pos') + '">' + int.pts.map(p => '<li>' + p + '</li>').join('') + '</ul><div class="next-box"><h4>Next steps:</h4><ul style="list-style:none;margin:.5rem 0">' + int.next.map(s => '<li style="color:var(--gray-light);padding:.25rem 0">→ ' + s + '</li>').join('') + '</ul></div><div class="timeline">📅 ' + int.time + '</div></div>' +
+    app.innerHTML = '<div class="step"><h1 class="text-center">Your Readiness Results</h1><div class="result-card"><div class="donut"><canvas id="dc" width="180" height="180"></canvas><div class="donut-center"><span>' + res.tier + '</span><small>Tier</small></div></div><div class="mb"><span class="tier tier-' + res.tier.toLowerCase() + '">' + int.emoji + ' Tier ' + res.tier + ': ' + int.title + '</span></div><p style="color:var(--gray-dark)"><strong style="color:var(--green)">' + res.g + ' Green (' + res.gp + '%)</strong> · <strong style="color:var(--yellow)">' + res.y + ' Yellow (' + res.yp + '%)</strong> · <strong style="color:var(--red)">' + res.r + ' Red (' + res.rp + '%)</strong></p></div>' +
+      '<div class="interp mb"><h3>' + int.emoji + ' ' + int.sub + '</h3><h4 style="margin-top:1rem;color:var(--gray-dark)">What this means:</h4><ul class="points ' + (int.neg ? 'neg' : 'pos') + '">' + int.pts.map(p => '<li>' + p + '</li>').join('') + '</ul><div class="next-box"><h4>Next steps:</h4><ul style="list-style:none;margin:.5rem 0">' + int.next.map(s => '<li style="color:var(--gray-dark);padding:.25rem 0">→ ' + s + '</li>').join('') + '</ul></div><span class="timeline">📅 ' + int.time + '</span></div>' +
       (plan.length ? '<h2>Your Action Plan</h2><p class="mb" style="color:var(--gray)">Focus on these areas to improve:</p><div class="grid">' + plan.map(p => '<div class="action"><h4>' + (p.pr === 'high' ? '❌' : '⚠️') + ' ' + p.label + '<span class="priority ' + p.pr + '">' + p.pr + '</span></h4><p><strong>Current:</strong> ' + p.cur + '</p><p><strong>→ ACTION:</strong> ' + p.a + '</p><p><strong>→ HOW:</strong> ' + p.h + '</p><p><strong>→ SUCCESS:</strong> ' + p.s + '</p><p><strong>→ TIMELINE:</strong> ' + p.t + '</p></div>').join('') + '</div>' : '') +
-      '<h2 style="margin-top:2rem">Success Story</h2><div class="story"><div class="company">' + ss.company + '</div><p style="color:var(--gray)">' + ss.desc + '</p><div class="signals"><span class="signal g">' + ss.sig.g + ' Green</span><span class="signal y">' + ss.sig.y + ' Yellow</span><span class="signal r">' + ss.sig.r + ' Red</span></div><h4 style="margin-top:.75rem;color:var(--gray-light)">What they did right:</h4><ul>' + ss.pts.map(p => '<li>' + p + '</li>').join('') + '</ul><div class="verdict">' + ss.verdict + '</div></div>' +
-      '<div class="flex justify-center gap flex-wrap" style="margin-top:2rem"><button class="btn btn-primary" onclick="step=1;vert=null;ans={};res=null;render()">Start Over</button><button class="btn btn-secondary" onclick="alert(\'PDF download coming soon!\')">Download PDF</button></div></div>';
+      '<h2 style="margin-top:2rem">Success Story</h2><div class="story"><div class="company">' + ss.company + '</div><p style="color:var(--gray)">' + ss.desc + '</p><div class="signals"><span class="signal g">' + ss.sig.g + ' Green</span><span class="signal y">' + ss.sig.y + ' Yellow</span><span class="signal r">' + ss.sig.r + ' Red</span></div><h4 style="margin-top:.75rem;color:var(--gray-dark)">What they did right:</h4><ul>' + ss.pts.map(p => '<li>' + p + '</li>').join('') + '</ul><div class="verdict">' + ss.verdict + '</div></div>' +
+      '<div class="flex justify-center gap flex-wrap" style="margin-top:2rem"><button class="btn btn-primary" onclick="step=1;vert=null;ans={};res=null;render()">START OVER</button><button class="btn btn-secondary" onclick="alert(\'PDF download coming soon!\')">DOWNLOAD PDF</button></div></div>';
     setTimeout(drawChart, 50);
   }
 }
