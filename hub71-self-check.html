@@ -5,97 +5,332 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hub71 Readiness Self-Check</title>
   <style>
-:root{--blue:#3b82f6;--green:#22c55e;--yellow:#fbbf24;--red:#ef4444;--navy:#0f172a;--purple:#581c87;--glass:rgba(255,255,255,0.05);--glass-hover:rgba(255,255,255,0.1);--border:rgba(255,255,255,0.1);--gray:#d1d5db}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#fff;background:linear-gradient(135deg,var(--navy),var(--purple));background-attachment:fixed;min-height:100vh;line-height:1.6}
-body::before{content:'';position:fixed;inset:0;opacity:.03;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-main{position:relative;z-index:2;padding:2rem;max-width:1200px;margin:0 auto}
-h1{font-size:clamp(1.8rem,5vw,2.5rem);font-weight:700;margin-bottom:1.5rem;text-align:center}
-h2{font-size:clamp(1.3rem,4vw,1.8rem);margin-bottom:1rem}
-h3{font-size:1.2rem;margin-bottom:.5rem}
-p{color:var(--gray);margin-bottom:.5rem}
-.step{animation:fadeIn .5s ease-out}
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.grid{display:grid;gap:1.5rem;margin:1.5rem 0}
-@media(min-width:768px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.grid.v4{grid-template-columns:repeat(4,1fr)}}
-.card{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:1.5rem;padding:2rem;transition:all .3s ease;box-shadow:0 8px 32px rgba(0,0,0,.2)}
-.card:hover{background:var(--glass-hover);transform:translateY(-4px)}
-.card.clickable{cursor:pointer;text-align:center;min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.card.clickable:hover{box-shadow:0 16px 48px rgba(59,130,246,.3);border-color:rgba(59,130,246,.3)}
-.icon{font-size:3rem;margin-bottom:1rem}
-.radio-group{display:flex;flex-direction:column;gap:.75rem;margin-top:1rem}
-.radio{display:flex;align-items:center;padding:1rem;background:rgba(255,255,255,.03);border:2px solid var(--border);border-radius:.75rem;cursor:pointer;transition:all .3s}
-.radio:hover{background:rgba(255,255,255,.05)}
-.radio input{appearance:none;width:20px;height:20px;border:2px solid var(--border);border-radius:50%;margin-right:.75rem;flex-shrink:0;transition:all .3s;position:relative}
-.radio input:checked{border-color:currentColor;background:currentColor}
-.radio input:checked::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:8px;height:8px;background:var(--navy);border-radius:50%}
-.radio.g{color:var(--green)}.radio.g:hover{background:rgba(34,197,94,.1);border-color:var(--green)}
-.radio.y{color:var(--yellow)}.radio.y:hover{background:rgba(251,191,36,.1);border-color:var(--yellow)}
-.radio.r{color:var(--red)}.radio.r:hover{background:rgba(239,68,68,.1);border-color:var(--red)}
-.progress{width:100%;height:10px;background:rgba(255,255,255,.1);border-radius:.5rem;overflow:hidden;margin:1rem 0}
-.progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:.5rem;transition:width .5s}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:1rem 2rem;font-size:1rem;font-weight:600;border:none;border-radius:.75rem;cursor:pointer;transition:all .3s}
-.btn-primary{background:linear-gradient(135deg,var(--blue),#2563eb);color:#fff;box-shadow:0 4px 16px rgba(59,130,246,.4)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(59,130,246,.6)}
-.btn-secondary{background:var(--glass);color:#fff;border:1px solid var(--border)}
-.btn-secondary:hover{background:var(--glass-hover)}
-.btn:disabled{opacity:.5;cursor:not-allowed;pointer-events:none}
-.tier{display:inline-block;padding:.75rem 1.5rem;border-radius:.75rem;font-weight:700;font-size:1.1rem}
-.tier-a{background:linear-gradient(135deg,var(--green),#16a34a);color:#fff}
-.tier-b{background:linear-gradient(135deg,var(--yellow),#f59e0b);color:var(--navy)}
-.tier-c{background:linear-gradient(135deg,var(--red),#dc2626);color:#fff}
-.donut{position:relative;width:180px;height:180px;margin:1.5rem auto}
-.donut-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
-.donut-center span{display:block;font-size:2.5rem;font-weight:700}
-.donut-center small{color:var(--gray)}
-.action{background:var(--glass);border:1px solid var(--border);border-radius:1rem;padding:1.25rem;margin-bottom:1rem}
-.action h4{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.5rem}
-.priority{padding:.25rem .5rem;border-radius:.5rem;font-size:.7rem;font-weight:600;text-transform:uppercase}
-.priority.high{background:rgba(239,68,68,.2);color:var(--red)}
-.priority.medium{background:rgba(251,191,36,.2);color:var(--yellow)}
-.story{background:var(--glass);border:1px solid var(--border);border-radius:1rem;padding:1.25rem;position:relative;overflow:hidden}
-.story::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(var(--green),var(--blue))}
-.story .company{color:var(--blue);font-weight:600;font-size:1.1rem}
-.signals{display:flex;gap:.5rem;margin:.75rem 0;flex-wrap:wrap}
-.signal{padding:.25rem .5rem;border-radius:.5rem;font-size:.85rem}
-.signal.g{background:rgba(34,197,94,.2);color:var(--green)}
-.signal.y{background:rgba(251,191,36,.2);color:var(--yellow)}
-.signal.r{background:rgba(239,68,68,.2);color:var(--red)}
-.story ul{list-style:none;margin:.75rem 0}
-.story li{padding:.25rem 0 .25rem 1.5rem;position:relative;color:var(--gray)}
-.story li::before{content:'✓';position:absolute;left:0;color:var(--green)}
-.verdict{margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border);font-style:italic;color:var(--gray)}
-.next-box{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);border-radius:.75rem;padding:1rem;margin-top:1rem}
-.next-box h4{color:var(--blue);margin-bottom:.5rem}
-.timeline{margin-top:1rem;padding:.5rem 1rem;background:rgba(255,255,255,.05);border-radius:.5rem;display:inline-block;font-weight:500}
-.points{list-style:none;margin:1rem 0}
-.points li{padding:.25rem 0 .25rem 1.5rem;position:relative;color:var(--gray)}
-.points.pos li::before{content:'✓';position:absolute;left:0;color:var(--green)}
-.points.neg li::before{content:'✗';position:absolute;left:0;color:var(--red)}
-.flex{display:flex}.flex-wrap{flex-wrap:wrap}.gap{gap:1rem}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.items-center{align-items:center}
-.text-center{text-align:center}.mb{margin-bottom:1.5rem}
-@media(max-width:767px){main{padding:1rem}.card.clickable{min-height:180px;padding:1.5rem}.icon{font-size:2.5rem}.btn{width:100%}.donut{width:150px;height:150px}.donut-center span{font-size:2rem}}
+    :root {
+      --blue: #3b82f6; --green: #22c55e; --yellow: #fbbf24; --red: #ef4444;
+      --navy: #0f172a; --purple: #581c87; --gray: #d1d5db;
+      --glass: rgba(255,255,255,0.05); --glass-hover: rgba(255,255,255,0.1);
+      --border: rgba(255,255,255,0.1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #fff; background: linear-gradient(135deg, var(--navy), var(--purple));
+      background-attachment: fixed; min-height: 100vh; line-height: 1.6;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; opacity: .03; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    main { position: relative; z-index: 2; padding: 2rem; max-width: 1200px; margin: 0 auto; }
+    h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 700; margin-bottom: 1.5rem; text-align: center; }
+    h2 { font-size: clamp(1.3rem, 4vw, 1.8rem); margin-bottom: 1rem; }
+    h3 { font-size: 1.2rem; margin-bottom: .5rem; }
+    p { color: var(--gray); margin-bottom: .5rem; }
+    .step { animation: fadeIn .5s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .grid { display: grid; gap: 1.5rem; margin: 1.5rem 0; }
+    @media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .grid.v4 { grid-template-columns: repeat(4, 1fr); } }
+    .card {
+      background: var(--glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border); border-radius: 1.5rem; padding: 2rem;
+      transition: all .3s ease; box-shadow: 0 8px 32px rgba(0,0,0,.2);
+    }
+    .card:hover { background: var(--glass-hover); transform: translateY(-4px); }
+    .card.clickable {
+      cursor: pointer; text-align: center; min-height: 220px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .card.clickable:hover { box-shadow: 0 16px 48px rgba(59,130,246,.3); border-color: rgba(59,130,246,.3); }
+    .icon { font-size: 3rem; margin-bottom: 1rem; }
+    .radio-group { display: flex; flex-direction: column; gap: .75rem; margin-top: 1rem; }
+    .radio {
+      display: flex; align-items: center; padding: 1rem;
+      background: rgba(255,255,255,.03); border: 2px solid var(--border);
+      border-radius: .75rem; cursor: pointer; transition: all .3s;
+    }
+    .radio:hover { background: rgba(255,255,255,.05); }
+    .radio input {
+      appearance: none; width: 20px; height: 20px; border: 2px solid var(--border);
+      border-radius: 50%; margin-right: .75rem; flex-shrink: 0; transition: all .3s; position: relative;
+    }
+    .radio input:checked { border-color: currentColor; background: currentColor; }
+    .radio input:checked::after {
+      content: ''; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%); width: 8px; height: 8px;
+      background: var(--navy); border-radius: 50%;
+    }
+    .radio.g { color: var(--green); }
+    .radio.g:hover { background: rgba(34,197,94,.1); border-color: var(--green); }
+    .radio.y { color: var(--yellow); }
+    .radio.y:hover { background: rgba(251,191,36,.1); border-color: var(--yellow); }
+    .radio.r { color: var(--red); }
+    .radio.r:hover { background: rgba(239,68,68,.1); border-color: var(--red); }
+    .progress { width: 100%; height: 10px; background: rgba(255,255,255,.1); border-radius: .5rem; overflow: hidden; margin: 1rem 0; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--blue), var(--green)); border-radius: .5rem; transition: width .5s; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 1rem 2rem; font-size: 1rem; font-weight: 600;
+      border: none; border-radius: .75rem; cursor: pointer; transition: all .3s;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--blue), #2563eb); color: #fff; box-shadow: 0 4px 16px rgba(59,130,246,.4); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(59,130,246,.6); }
+    .btn-secondary { background: var(--glass); color: #fff; border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--glass-hover); }
+    .btn:disabled { opacity: .5; cursor: not-allowed; pointer-events: none; }
+    .tier { display: inline-block; padding: .75rem 1.5rem; border-radius: .75rem; font-weight: 700; font-size: 1.1rem; }
+    .tier-a { background: linear-gradient(135deg, var(--green), #16a34a); color: #fff; }
+    .tier-b { background: linear-gradient(135deg, var(--yellow), #f59e0b); color: var(--navy); }
+    .tier-c { background: linear-gradient(135deg, var(--red), #dc2626); color: #fff; }
+    .donut { position: relative; width: 180px; height: 180px; margin: 1.5rem auto; }
+    .donut-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+    .donut-center span { display: block; font-size: 2.5rem; font-weight: 700; }
+    .donut-center small { color: var(--gray); }
+    .action { background: var(--glass); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; margin-bottom: 1rem; }
+    .action h4 { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; margin-bottom: .5rem; }
+    .priority { padding: .25rem .5rem; border-radius: .5rem; font-size: .7rem; font-weight: 600; text-transform: uppercase; }
+    .priority.high { background: rgba(239,68,68,.2); color: var(--red); }
+    .priority.medium { background: rgba(251,191,36,.2); color: var(--yellow); }
+    .story { background: var(--glass); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem; position: relative; overflow: hidden; }
+    .story::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(var(--green), var(--blue)); }
+    .story .company { color: var(--blue); font-weight: 600; font-size: 1.1rem; }
+    .signals { display: flex; gap: .5rem; margin: .75rem 0; flex-wrap: wrap; }
+    .signal { padding: .25rem .5rem; border-radius: .5rem; font-size: .85rem; }
+    .signal.g { background: rgba(34,197,94,.2); color: var(--green); }
+    .signal.y { background: rgba(251,191,36,.2); color: var(--yellow); }
+    .signal.r { background: rgba(239,68,68,.2); color: var(--red); }
+    .story ul { list-style: none; margin: .75rem 0; }
+    .story li { padding: .25rem 0 .25rem 1.5rem; position: relative; color: var(--gray); }
+    .story li::before { content: '✓'; position: absolute; left: 0; color: var(--green); }
+    .verdict { margin-top: .75rem; padding-top: .75rem; border-top: 1px solid var(--border); font-style: italic; color: var(--gray); }
+    .next-box { background: rgba(59,130,246,.1); border: 1px solid rgba(59,130,246,.2); border-radius: .75rem; padding: 1rem; margin-top: 1rem; }
+    .next-box h4 { color: var(--blue); margin-bottom: .5rem; }
+    .timeline { margin-top: 1rem; padding: .5rem 1rem; background: rgba(255,255,255,.05); border-radius: .5rem; display: inline-block; font-weight: 500; }
+    .points { list-style: none; margin: 1rem 0; }
+    .points li { padding: .25rem 0 .25rem 1.5rem; position: relative; color: var(--gray); }
+    .points.pos li::before { content: '✓'; position: absolute; left: 0; color: var(--green); }
+    .points.neg li::before { content: '✗'; position: absolute; left: 0; color: var(--red); }
+    .flex { display: flex; } .flex-wrap { flex-wrap: wrap; } .gap { gap: 1rem; }
+    .justify-center { justify-content: center; } .justify-between { justify-content: space-between; }
+    .items-center { align-items: center; } .text-center { text-align: center; } .mb { margin-bottom: 1.5rem; }
+    @media (max-width: 767px) {
+      main { padding: 1rem; }
+      .card.clickable { min-height: 180px; padding: 1.5rem; }
+      .icon { font-size: 2.5rem; }
+      .btn { width: 100%; }
+      .donut { width: 150px; height: 150px; }
+      .donut-center span { font-size: 2rem; }
+    }
   </style>
 </head>
 <body>
 <main id="app"></main>
 <script>
-const V=[{id:'fintech',name:'Fintech/Web3',icon:'💳',desc:'Payments, DeFi, Banking, Crypto'},{id:'ai',name:'AI',icon:'🤖',desc:'Machine Learning, LLMs, Computer Vision'},{id:'climate',name:'ClimateTech',icon:'🌱',desc:'Sustainability, Clean Energy, Carbon'},{id:'edtech',name:'EdTech',icon:'📚',desc:'Learning, Skills, Education Platforms'}];
-const C={fintech:[{id:'stage',label:'Product Stage',g:'Live with paying users',y:'MVP tests',r:'Idea only'},{id:'traction',label:'Traction Proof',g:'Active users/revenue',y:'POCs',r:'No validation'},{id:'metrics',label:'Business Metrics',g:'Track MRR, CAC, LTV',y:'Track some',r:"Don't track"},{id:'regulatory',label:'Regulatory Knowledge',g:'Know ADGM/have roadmap',y:'Basic awareness',r:'No knowledge'},{id:'abudhabi',label:'Abu Dhabi Fit',g:'Clear strategy',y:'General interest',r:'No rationale'}],ai:[{id:'aicore',label:'AI Core',g:'Without AI = no product',y:'AI important feature',r:'AI is nice-to-have'},{id:'aiteam',label:'AI Team',g:'ML lead with 3+ years',y:'Junior ML engineer',r:'No AI expertise'},{id:'validation',label:'Validation',g:'Real pilots with partners',y:'Lab tests only',r:'No validation'},{id:'modelmetrics',label:'Model Metrics',g:'Track accuracy, latency, cost',y:'Track some',r:"Don't track"},{id:'abudhabiai',label:'Abu Dhabi AI',g:'Plan to use AI71/Core42',y:'General interest',r:'No specific plan'}],climate:[{id:'climatelogic',label:'Climate Logic',g:'Clear CO2/energy reduction path',y:'General climate benefit',r:'Unclear connection'},{id:'impactmodel',label:'Impact Model',g:'Calculate CO2e/energy saved',y:'Rough estimates',r:'No calculations'},{id:'pilotready',label:'Pilot Ready',g:'Ready for pilot now',y:'Prototype stage',r:'Not ready'},{id:'localrelevance',label:'Local Relevance',g:'Ties to UAE Net Zero 2050',y:'MENA relevant',r:'No local angle'},{id:'partnerships',label:'Partnerships',g:'Talks with Tabreed/TAQA',y:'Potential partners identified',r:'No partners'}],edtech:[{id:'learningoutcome',label:'Learning Outcome',g:'Specific measurable outcome',y:'General improvement',r:'Unclear outcome'},{id:'targetuser',label:'Target User',g:'Clear ICP + buyer',y:'Know user, unclear buyer',r:'Unclear both'},{id:'engagement',label:'Engagement',g:'High DAU, good retention',y:'Medium engagement',r:'Low engagement'},{id:'marketmena',label:'Market MENA',g:'Strong MENA relevance',y:'Could work in MENA',r:'Not MENA-specific'},{id:'edpartners',label:'Partnerships',g:'School/Ministry partnerships',y:'Potential partners',r:'No partnerships'}]};
-const I={A:{emoji:'✅',title:'High Readiness',sub:'You look like a STRONG candidate for Hub71 Access/Specialist programs.',pts:['Clear product-market fit','Evidence of traction','Ready for Abu Dhabi expansion'],next:["Apply now (don't wait for perfection)",'Focus pitch on your strong signals','Explain Abu Dhabi as strategic choice'],time:'Apply within 1 week'},B:{emoji:'🟡',title:'Borderline',sub:'You have a SOLID FOUNDATION but need to strengthen a few areas.',pts:['You understand what matters','Some risks, but manageable','Hub71 exists to help with gaps'],next:['Strengthen your yellow/red signals (2-4 weeks)','Option A: Apply now, explain gaps in cover letter','Option B: Improve for 3 weeks, then apply'],time:'2-4 weeks improvement → apply'},C:{emoji:'🔴',title:'Early Stage',sub:"Your profile doesn't match typical Hub71 Access candidates YET.",pts:['Too early stage OR','Missing validation OR','Unclear Abu Dhabi strategy'],neg:true,next:['Consider Hub71 Initiate (for earlier stage)','Month 1-2: Get live product + validation','Month 3: Build team + market clarity','Month 4: Re-assess and apply'],time:'3-4 months → re-assess'}};
-const SS={fintech:{company:'QuickPay',desc:'Expense Management SaaS',sig:{g:6,y:2,r:0},pts:['$1.2M profit, not just idea','Clear ICP and market','800% YoY growth'],verdict:"Hub71 verdict: 'Strong candidate, help needed with Abu Dhabi partnerships'"},ai:{company:'VisionAI',desc:'Computer vision platform for retail analytics',sig:{g:5,y:0,r:0},pts:['AI core to product value proposition','Experienced ML team with 5+ years','Active pilots with 3 major retailers','Planned integration with AI71'],verdict:'Fast-tracked to Hub71 AI program, secured enterprise partnerships'},climate:{company:'CarbonTrack',desc:'Carbon accounting platform for UAE companies',sig:{g:4,y:1,r:0},pts:['Clear CO2 reduction methodology','Quantified impact model (tons CO2e saved)','Strong alignment with UAE Net Zero 2050','Partnership discussions with Tabreed'],verdict:'Accepted to Hub71 ClimateTech cohort, featured in ADGM sustainability showcase'},edtech:{company:'LearnMENA',desc:'Arabic-first learning platform for K-12',sig:{g:3,y:2,r:0},pts:['Specific learning outcome metrics (+15% test scores)','Clear ICP: K-12 students, buyers: schools','Strong engagement: 70% DAU, 85% retention','Strong MENA relevance with Arabic content'],verdict:'Accepted to Hub71 EdTech program, piloting with 5 Abu Dhabi schools'}};
-const AT={stage:{a:'Launch payment pilot',h:'Integrate Stripe, get 5-10 payments',s:'5+ payments, ≥$100 total',t:'1-2 weeks'},traction:{a:'Get first paying customers',h:'Launch beta, offer early-bird pricing',s:'5+ paying customers or 100+ users',t:'3-4 weeks'},metrics:{a:'Set up analytics dashboard',h:'Use Mixpanel/Amplitude, track MRR, CAC, LTV',s:'Dashboard with weekly tracking',t:'1 week'},regulatory:{a:'Research ADGM requirements',h:'Book consultation with ADGM',s:'Clear licensing roadmap',t:'2-3 weeks'},abudhabi:{a:'Define Abu Dhabi go-to-market',h:'Research local competitors',s:'3+ Abu Dhabi use cases',t:'1-2 weeks'},aicore:{a:'Strengthen AI dependency',h:'Refactor so core features require AI',s:'Product cannot work without AI',t:'2-3 weeks'},aiteam:{a:'Hire ML expertise',h:'Post on AI job boards',s:'ML lead with 3+ years',t:'4-6 weeks'},validation:{a:'Secure real pilots',h:'Reach out to 10 partners',s:'2+ pilot agreements',t:'3-4 weeks'},modelmetrics:{a:'Implement model monitoring',h:'Set up MLflow tracking',s:'Dashboard with metrics',t:'1-2 weeks'},abudhabiai:{a:'Explore AI71/Core42',h:'Attend events, request meeting',s:'Integration plan documented',t:'2-3 weeks'},climatelogic:{a:'Document CO2 reduction path',h:'Create methodology document',s:'Clear mechanism doc',t:'1 week'},impactmodel:{a:'Build impact calculator',h:'Create tool to calculate CO2e',s:'Working calculator',t:'1-2 weeks'},pilotready:{a:'Prepare for pilot',h:'Complete prototype',s:'Pilot-ready + 1 partner',t:'3-4 weeks'},localrelevance:{a:'Connect to UAE Net Zero 2050',h:'Document alignment points',s:'Alignment document',t:'1 week'},partnerships:{a:'Reach out to climate partners',h:'Contact Tabreed, TAQA, Masdar',s:'2+ partner discussions',t:'2-4 weeks'},learningoutcome:{a:'Define measurable outcomes',h:'Create pre/post assessments',s:'+15% test scores',t:'1-2 weeks'},targetuser:{a:'Clarify ICP and buyer',h:'Interview 10 users',s:'ICP doc with personas',t:'1-2 weeks'},engagement:{a:'Improve retention',h:'Add gamification, streaks',s:'50%+ DAU, 70%+ retention',t:'3-4 weeks'},marketmena:{a:'Localize for MENA',h:'Add Arabic content',s:'MENA features launched',t:'2-4 weeks'},edpartners:{a:'Build school partnerships',h:'Contact Abu Dhabi schools',s:'3+ school discussions',t:'2-4 weeks'}};
-let step=1,vert=null,ans={},res=null;
-const $=id=>document.getElementById(id);
-function sel(v){vert=v;ans={};step=2;render()}
-function answer(id,val){ans[id]=val;const cr=C[vert],n=Object.keys(ans).length,pct=(n/cr.length)*100;const fill=$('pf');if(fill)fill.style.width=pct+'%';const cnt=$('pc');if(cnt)cnt.textContent=n+' of '+cr.length;const btn=$('calc');if(btn){btn.disabled=n!==cr.length;btn.style.opacity=n===cr.length?1:.5}}
-function calc(){const cr=C[vert];let g=0,y=0,r=0;Object.values(ans).forEach(v=>{if(v==='g')g++;else if(v==='y')y++;else r++});const gp=Math.round(g/cr.length*100),yp=Math.round(y/cr.length*100),rp=Math.round(r/cr.length*100);res={gp,yp,rp,g,y,r,tier:gp>=70?'A':gp>=50?'B':'C'};step=3;render()}
-function getPlan(){if(!vert)return[];const cr=C[vert],items=[];Object.entries(ans).forEach(([id,v])=>{if(v==='y'||v==='r'){const c=cr.find(x=>x.id===id),t=AT[id];if(c&&t)items.push({id,label:c.label,pr:v==='r'?'high':'medium',cur:c[v],...t})}});return items}
-function render(){const app=$('app');if(step===1){app.innerHTML=`<div class="step"><h1>Hub71 Readiness Self-Check</h1><p class="text-center mb">Select your vertical to begin</p><div class="grid v4">${V.map(v=>`<div class="card clickable" onclick="sel('${v.id}')"><div class="icon">${v.icon}</div><h3>${v.name}</h3><p>${v.desc}</p></div>`).join('')}</div></div>`}
-else if(step===2){const vd=V.find(x=>x.id===vert),cr=C[vert],n=Object.keys(ans).length;app.innerHTML=`<div class="step"><div class="flex justify-between items-center flex-wrap gap mb"><div><h2>${vd.icon} ${vd.name}</h2><p>Answer all questions to see your readiness score</p></div><button class="btn btn-secondary" onclick="step=1;vert=null;ans={};render()">← Back</button></div><div class="flex justify-between" style="font-size:.9rem;color:var(--gray)"><span>Progress</span><span id="pc">${n} of ${cr.length}</span></div><div class="progress"><div class="progress-fill" id="pf" style="width:${n/cr.length*100}%"></div></div>${cr.map((c,i)=>`<div class="card mb"><h3>${i+1}. ${c.label}</h3><div class="radio-group"><label class="radio g"><input type="radio" name="${c.id}" ${ans[c.id]==='g'?'checked':''} onchange="answer('${c.id}','g')"><span>${c.g}</span></label><label class="radio y"><input type="radio" name="${c.id}" ${ans[c.id]==='y'?'checked':''} onchange="answer('${c.id}','y')"><span>${c.y}</span></label><label class="radio r"><input type="radio" name="${c.id}" ${ans[c.id]==='r'?'checked':''} onchange="answer('${c.id}','r')"><span>${c.r}</span></label></div></div>`).join('')}<div class="flex justify-center"><button id="calc" class="btn btn-primary" ${n===cr.length?'':'disabled style="opacity:.5"'} onclick="calc()">Calculate Results</button></div></div>`}
-else{const int=I[res.tier],ss=SS[vert],plan=getPlan();app.innerHTML=`<div class="step"><h1>Your Readiness Results</h1><div class="card text-center mb"><div class="donut"><canvas id="dc" width="180" height="180"></canvas><div class="donut-center"><span>${res.tier}</span><small>Tier</small></div></div><div class="mb"><span class="tier tier-${res.tier.toLowerCase()}">${int.emoji} Tier ${res.tier}: ${int.title}</span></div><p><strong style="color:var(--green)">${res.g} Green (${res.gp}%)</strong> · <strong style="color:var(--yellow)">${res.y} Yellow (${res.yp}%)</strong> · <strong style="color:var(--red)">${res.r} Red (${res.rp}%)</strong></p></div><div class="card mb"><h3>${int.emoji} ${int.sub}</h3><h4 style="margin-top:1rem">What this means:</h4><ul class="points ${int.neg?'neg':'pos'}">${int.pts.map(p=>`<li>${p}</li>`).join('')}</ul><div class="next-box"><h4>Next steps:</h4><ul style="list-style:none;margin:.5rem 0">${int.next.map(s=>`<li style="color:var(--gray);padding:.25rem 0">→ ${s}</li>`).join('')}</ul></div><div class="timeline">📅 Timeline: ${int.time}</div></div>${plan.length?`<h2>Your Action Plan</h2><p class="mb">Focus on these areas to improve:</p><div class="grid">${plan.map(p=>`<div class="action"><h4>${p.pr==='high'?'❌':'⚠️'} ${p.label}<span class="priority ${p.pr}">${p.pr}</span></h4><p><strong>Current:</strong> ${p.cur}</p><p><strong>→ ACTION:</strong> ${p.a}</p><p><strong>→ HOW:</strong> ${p.h}</p><p><strong>→ SUCCESS:</strong> ${p.s}</p><p><strong>→ TIMELINE:</strong> ${p.t}</p></div>`).join('')}</div>`:''}<h2 style="margin-top:1.5rem">Success Story</h2><div class="story"><div class="company">${ss.company}</div><p>${ss.desc}</p><div class="signals"><span class="signal g">${ss.sig.g} Green</span><span class="signal y">${ss.sig.y} Yellow</span><span class="signal r">${ss.sig.r} Red</span></div><h4 style="margin-top:.75rem">What they did right:</h4><ul>${ss.pts.map(p=>`<li>${p}</li>`).join('')}</ul><div class="verdict">${ss.verdict}</div></div><div class="flex justify-center gap flex-wrap" style="margin-top:1.5rem"><button class="btn btn-primary" onclick="step=1;vert=null;ans={};res=null;render()">Start Over</button><button class="btn btn-secondary" onclick="alert('PDF download coming soon!')">Download PDF</button></div></div>`;setTimeout(()=>{const cv=$('dc');if(!cv)return;const ctx=cv.getContext('2d'),cx=90,cy=90,R=75,r=50,t=res.gp+res.yp+res.rp;if(!t)return;let a=-Math.PI/2;[[res.gp,'#22c55e'],[res.yp,'#fbbf24'],[res.rp,'#ef4444']].forEach(([p,c])=>{if(p>0){const ang=p/t*2*Math.PI;ctx.beginPath();ctx.arc(cx,cy,R,a,a+ang);ctx.arc(cx,cy,r,a+ang,a,true);ctx.closePath();ctx.fillStyle=c;ctx.fill();a+=ang}})},50)}}}
-document.addEventListener('DOMContentLoaded',render);
+const V = [
+  { id: 'fintech', name: 'Fintech/Web3', icon: '💳', desc: 'Payments, DeFi, Banking, Crypto' },
+  { id: 'ai', name: 'AI', icon: '🤖', desc: 'Machine Learning, LLMs, Computer Vision' },
+  { id: 'climate', name: 'ClimateTech', icon: '🌱', desc: 'Sustainability, Clean Energy, Carbon' },
+  { id: 'edtech', name: 'EdTech', icon: '📚', desc: 'Learning, Skills, Education Platforms' }
+];
+
+const C = {
+  fintech: [
+    { id: 'stage', label: 'Product Stage', g: 'Live with paying users', y: 'MVP tests', r: 'Idea only' },
+    { id: 'traction', label: 'Traction Proof', g: 'Active users/revenue', y: 'POCs', r: 'No validation' },
+    { id: 'metrics', label: 'Business Metrics', g: 'Track MRR, CAC, LTV', y: 'Track some', r: "Don't track" },
+    { id: 'regulatory', label: 'Regulatory Knowledge', g: 'Know ADGM/have roadmap', y: 'Basic awareness', r: 'No knowledge' },
+    { id: 'abudhabi', label: 'Abu Dhabi Fit', g: 'Clear strategy', y: 'General interest', r: 'No rationale' }
+  ],
+  ai: [
+    { id: 'aicore', label: 'AI Core', g: 'Without AI = no product', y: 'AI important feature', r: 'AI is nice-to-have' },
+    { id: 'aiteam', label: 'AI Team', g: 'ML lead with 3+ years', y: 'Junior ML engineer', r: 'No AI expertise' },
+    { id: 'validation', label: 'Validation', g: 'Real pilots with partners', y: 'Lab tests only', r: 'No validation' },
+    { id: 'modelmetrics', label: 'Model Metrics', g: 'Track accuracy, latency, cost', y: 'Track some', r: "Don't track" },
+    { id: 'abudhabiai', label: 'Abu Dhabi AI', g: 'Plan to use AI71/Core42', y: 'General interest', r: 'No specific plan' }
+  ],
+  climate: [
+    { id: 'climatelogic', label: 'Climate Logic', g: 'Clear CO2/energy reduction path', y: 'General climate benefit', r: 'Unclear connection' },
+    { id: 'impactmodel', label: 'Impact Model', g: 'Calculate CO2e/energy saved', y: 'Rough estimates', r: 'No calculations' },
+    { id: 'pilotready', label: 'Pilot Ready', g: 'Ready for pilot now', y: 'Prototype stage', r: 'Not ready' },
+    { id: 'localrelevance', label: 'Local Relevance', g: 'Ties to UAE Net Zero 2050', y: 'MENA relevant', r: 'No local angle' },
+    { id: 'partnerships', label: 'Partnerships', g: 'Talks with Tabreed/TAQA', y: 'Potential partners identified', r: 'No partners' }
+  ],
+  edtech: [
+    { id: 'learningoutcome', label: 'Learning Outcome', g: 'Specific measurable outcome', y: 'General improvement', r: 'Unclear outcome' },
+    { id: 'targetuser', label: 'Target User', g: 'Clear ICP + buyer', y: 'Know user, unclear buyer', r: 'Unclear both' },
+    { id: 'engagement', label: 'Engagement', g: 'High DAU, good retention', y: 'Medium engagement', r: 'Low engagement' },
+    { id: 'marketmena', label: 'Market MENA', g: 'Strong MENA relevance', y: 'Could work in MENA', r: 'Not MENA-specific' },
+    { id: 'edpartners', label: 'Partnerships', g: 'School/Ministry partnerships', y: 'Potential partners', r: 'No partnerships' }
+  ]
+};
+
+const I = {
+  A: {
+    emoji: '✅', title: 'High Readiness',
+    sub: 'You look like a STRONG candidate for Hub71 Access/Specialist programs.',
+    pts: ['Clear product-market fit', 'Evidence of traction', 'Ready for Abu Dhabi expansion'],
+    next: ["Apply now (don't wait for perfection)", 'Focus pitch on your strong signals', 'Explain Abu Dhabi as strategic choice'],
+    time: 'Apply within 1 week'
+  },
+  B: {
+    emoji: '🟡', title: 'Borderline',
+    sub: 'You have a SOLID FOUNDATION but need to strengthen a few areas.',
+    pts: ['You understand what matters', 'Some risks, but manageable', 'Hub71 exists to help with gaps'],
+    next: ['Strengthen your yellow/red signals (2-4 weeks)', 'Option A: Apply now, explain gaps in cover letter', 'Option B: Improve for 3 weeks, then apply'],
+    time: '2-4 weeks improvement → apply'
+  },
+  C: {
+    emoji: '🔴', title: 'Early Stage',
+    sub: "Your profile doesn't match typical Hub71 Access candidates YET.",
+    pts: ['Too early stage OR', 'Missing validation OR', 'Unclear Abu Dhabi strategy'], neg: true,
+    next: ['Consider Hub71 Initiate (for earlier stage)', 'Month 1-2: Get live product + validation', 'Month 3: Build team + market clarity', 'Month 4: Re-assess and apply'],
+    time: '3-4 months → re-assess'
+  }
+};
+
+const SS = {
+  fintech: { company: 'QuickPay', desc: 'Expense Management SaaS', sig: { g: 6, y: 2, r: 0 },
+    pts: ['$1.2M profit, not just idea', 'Clear ICP and market', '800% YoY growth'],
+    verdict: "Hub71 verdict: 'Strong candidate, help needed with Abu Dhabi partnerships'" },
+  ai: { company: 'VisionAI', desc: 'Computer vision platform for retail analytics', sig: { g: 5, y: 0, r: 0 },
+    pts: ['AI core to product value proposition', 'Experienced ML team with 5+ years', 'Active pilots with 3 major retailers', 'Planned integration with AI71'],
+    verdict: 'Fast-tracked to Hub71 AI program, secured enterprise partnerships' },
+  climate: { company: 'CarbonTrack', desc: 'Carbon accounting platform for UAE companies', sig: { g: 4, y: 1, r: 0 },
+    pts: ['Clear CO2 reduction methodology', 'Quantified impact model (tons CO2e saved)', 'Strong alignment with UAE Net Zero 2050', 'Partnership discussions with Tabreed'],
+    verdict: 'Accepted to Hub71 ClimateTech cohort, featured in ADGM sustainability showcase' },
+  edtech: { company: 'LearnMENA', desc: 'Arabic-first learning platform for K-12', sig: { g: 3, y: 2, r: 0 },
+    pts: ['Specific learning outcome metrics (+15% test scores)', 'Clear ICP: K-12 students, buyers: schools', 'Strong engagement: 70% DAU, 85% retention', 'Strong MENA relevance with Arabic content'],
+    verdict: 'Accepted to Hub71 EdTech program, piloting with 5 Abu Dhabi schools' }
+};
+
+const AT = {
+  stage: { a: 'Launch payment pilot', h: 'Integrate Stripe, get 5-10 payments', s: '5+ payments, ≥$100 total', t: '1-2 weeks' },
+  traction: { a: 'Get first paying customers', h: 'Launch beta, offer early-bird pricing', s: '5+ paying customers or 100+ users', t: '3-4 weeks' },
+  metrics: { a: 'Set up analytics dashboard', h: 'Use Mixpanel/Amplitude, track MRR, CAC, LTV', s: 'Dashboard with weekly tracking', t: '1 week' },
+  regulatory: { a: 'Research ADGM requirements', h: 'Book consultation with ADGM', s: 'Clear licensing roadmap', t: '2-3 weeks' },
+  abudhabi: { a: 'Define Abu Dhabi go-to-market', h: 'Research local competitors', s: '3+ Abu Dhabi use cases', t: '1-2 weeks' },
+  aicore: { a: 'Strengthen AI dependency', h: 'Refactor so core features require AI', s: 'Product cannot work without AI', t: '2-3 weeks' },
+  aiteam: { a: 'Hire ML expertise', h: 'Post on AI job boards', s: 'ML lead with 3+ years', t: '4-6 weeks' },
+  validation: { a: 'Secure real pilots', h: 'Reach out to 10 partners', s: '2+ pilot agreements', t: '3-4 weeks' },
+  modelmetrics: { a: 'Implement model monitoring', h: 'Set up MLflow tracking', s: 'Dashboard with metrics', t: '1-2 weeks' },
+  abudhabiai: { a: 'Explore AI71/Core42', h: 'Attend events, request meeting', s: 'Integration plan documented', t: '2-3 weeks' },
+  climatelogic: { a: 'Document CO2 reduction path', h: 'Create methodology document', s: 'Clear mechanism doc', t: '1 week' },
+  impactmodel: { a: 'Build impact calculator', h: 'Create tool to calculate CO2e', s: 'Working calculator', t: '1-2 weeks' },
+  pilotready: { a: 'Prepare for pilot', h: 'Complete prototype', s: 'Pilot-ready + 1 partner', t: '3-4 weeks' },
+  localrelevance: { a: 'Connect to UAE Net Zero 2050', h: 'Document alignment points', s: 'Alignment document', t: '1 week' },
+  partnerships: { a: 'Reach out to climate partners', h: 'Contact Tabreed, TAQA, Masdar', s: '2+ partner discussions', t: '2-4 weeks' },
+  learningoutcome: { a: 'Define measurable outcomes', h: 'Create pre/post assessments', s: '+15% test scores', t: '1-2 weeks' },
+  targetuser: { a: 'Clarify ICP and buyer', h: 'Interview 10 users', s: 'ICP doc with personas', t: '1-2 weeks' },
+  engagement: { a: 'Improve retention', h: 'Add gamification, streaks', s: '50%+ DAU, 70%+ retention', t: '3-4 weeks' },
+  marketmena: { a: 'Localize for MENA', h: 'Add Arabic content', s: 'MENA features launched', t: '2-4 weeks' },
+  edpartners: { a: 'Build school partnerships', h: 'Contact Abu Dhabi schools', s: '3+ school discussions', t: '2-4 weeks' }
+};
+
+let step = 1, vert = null, ans = {}, res = null;
+const $ = (id) => document.getElementById(id);
+
+function sel(v) { vert = v; ans = {}; step = 2; render(); }
+
+function answer(id, val) {
+  ans[id] = val;
+  const cr = C[vert], n = Object.keys(ans).length, pct = (n / cr.length) * 100;
+  const fill = $('pf'); if (fill) fill.style.width = pct + '%';
+  const cnt = $('pc'); if (cnt) cnt.textContent = n + ' of ' + cr.length;
+  const btn = $('calc'); if (btn) { btn.disabled = n !== cr.length; btn.style.opacity = n === cr.length ? 1 : 0.5; }
+}
+
+function calc() {
+  const cr = C[vert]; let g = 0, y = 0, r = 0;
+  Object.values(ans).forEach(v => { if (v === 'g') g++; else if (v === 'y') y++; else r++; });
+  const gp = Math.round(g / cr.length * 100), yp = Math.round(y / cr.length * 100), rp = Math.round(r / cr.length * 100);
+  res = { gp, yp, rp, g, y, r, tier: gp >= 70 ? 'A' : gp >= 50 ? 'B' : 'C' };
+  step = 3; render();
+}
+
+function getPlan() {
+  if (!vert) return [];
+  const cr = C[vert], items = [];
+  Object.entries(ans).forEach(([id, v]) => {
+    if (v === 'y' || v === 'r') {
+      const c = cr.find(x => x.id === id), t = AT[id];
+      if (c && t) items.push({ id, label: c.label, pr: v === 'r' ? 'high' : 'medium', cur: c[v], ...t });
+    }
+  });
+  return items;
+}
+
+function drawChart() {
+  const cv = $('dc'); if (!cv) return;
+  const ctx = cv.getContext('2d'), cx = 90, cy = 90, R = 75, r = 50;
+  const t = res.gp + res.yp + res.rp; if (!t) return;
+  let a = -Math.PI / 2;
+  [[res.gp, '#22c55e'], [res.yp, '#fbbf24'], [res.rp, '#ef4444']].forEach(([p, c]) => {
+    if (p > 0) {
+      const ang = p / t * 2 * Math.PI;
+      ctx.beginPath(); ctx.arc(cx, cy, R, a, a + ang); ctx.arc(cx, cy, r, a + ang, a, true);
+      ctx.closePath(); ctx.fillStyle = c; ctx.fill(); a += ang;
+    }
+  });
+}
+
+function render() {
+  const app = $('app');
+  if (step === 1) {
+    app.innerHTML = '<div class="step"><h1>Hub71 Readiness Self-Check</h1>' +
+      '<p class="text-center mb">Select your vertical to begin</p><div class="grid v4">' +
+      V.map(v => '<div class="card clickable" onclick="sel(\'' + v.id + '\')">' +
+        '<div class="icon">' + v.icon + '</div><h3>' + v.name + '</h3><p>' + v.desc + '</p></div>').join('') +
+      '</div></div>';
+  } else if (step === 2) {
+    const vd = V.find(x => x.id === vert), cr = C[vert], n = Object.keys(ans).length;
+    app.innerHTML = '<div class="step"><div class="flex justify-between items-center flex-wrap gap mb"><div>' +
+      '<h2>' + vd.icon + ' ' + vd.name + '</h2><p>Answer all questions to see your readiness score</p></div>' +
+      '<button class="btn btn-secondary" onclick="step=1;vert=null;ans={};render()">← Back</button></div>' +
+      '<div class="flex justify-between" style="font-size:.9rem;color:var(--gray)"><span>Progress</span>' +
+      '<span id="pc">' + n + ' of ' + cr.length + '</span></div>' +
+      '<div class="progress"><div class="progress-fill" id="pf" style="width:' + (n / cr.length * 100) + '%"></div></div>' +
+      cr.map((c, i) => '<div class="card mb"><h3>' + (i + 1) + '. ' + c.label + '</h3><div class="radio-group">' +
+        '<label class="radio g"><input type="radio" name="' + c.id + '"' + (ans[c.id] === 'g' ? ' checked' : '') +
+        ' onchange="answer(\'' + c.id + '\',\'g\')"><span>' + c.g + '</span></label>' +
+        '<label class="radio y"><input type="radio" name="' + c.id + '"' + (ans[c.id] === 'y' ? ' checked' : '') +
+        ' onchange="answer(\'' + c.id + '\',\'y\')"><span>' + c.y + '</span></label>' +
+        '<label class="radio r"><input type="radio" name="' + c.id + '"' + (ans[c.id] === 'r' ? ' checked' : '') +
+        ' onchange="answer(\'' + c.id + '\',\'r\')"><span>' + c.r + '</span></label></div></div>').join('') +
+      '<div class="flex justify-center"><button id="calc" class="btn btn-primary"' +
+      (n === cr.length ? '' : ' disabled style="opacity:.5"') + ' onclick="calc()">Calculate Results</button></div></div>';
+  } else {
+    const int = I[res.tier], ss = SS[vert], plan = getPlan();
+    app.innerHTML = '<div class="step"><h1>Your Readiness Results</h1>' +
+      '<div class="card text-center mb"><div class="donut"><canvas id="dc" width="180" height="180"></canvas>' +
+      '<div class="donut-center"><span>' + res.tier + '</span><small>Tier</small></div></div>' +
+      '<div class="mb"><span class="tier tier-' + res.tier.toLowerCase() + '">' + int.emoji + ' Tier ' + res.tier + ': ' + int.title + '</span></div>' +
+      '<p><strong style="color:var(--green)">' + res.g + ' Green (' + res.gp + '%)</strong> · ' +
+      '<strong style="color:var(--yellow)">' + res.y + ' Yellow (' + res.yp + '%)</strong> · ' +
+      '<strong style="color:var(--red)">' + res.r + ' Red (' + res.rp + '%)</strong></p></div>' +
+      '<div class="card mb"><h3>' + int.emoji + ' ' + int.sub + '</h3><h4 style="margin-top:1rem">What this means:</h4>' +
+      '<ul class="points ' + (int.neg ? 'neg' : 'pos') + '">' + int.pts.map(p => '<li>' + p + '</li>').join('') + '</ul>' +
+      '<div class="next-box"><h4>Next steps:</h4><ul style="list-style:none;margin:.5rem 0">' +
+      int.next.map(s => '<li style="color:var(--gray);padding:.25rem 0">→ ' + s + '</li>').join('') + '</ul></div>' +
+      '<div class="timeline">📅 Timeline: ' + int.time + '</div></div>' +
+      (plan.length ? '<h2>Your Action Plan</h2><p class="mb">Focus on these areas to improve:</p><div class="grid">' +
+        plan.map(p => '<div class="action"><h4>' + (p.pr === 'high' ? '❌' : '⚠️') + ' ' + p.label +
+          '<span class="priority ' + p.pr + '">' + p.pr + '</span></h4>' +
+          '<p><strong>Current:</strong> ' + p.cur + '</p><p><strong>→ ACTION:</strong> ' + p.a + '</p>' +
+          '<p><strong>→ HOW:</strong> ' + p.h + '</p><p><strong>→ SUCCESS:</strong> ' + p.s + '</p>' +
+          '<p><strong>→ TIMELINE:</strong> ' + p.t + '</p></div>').join('') + '</div>' : '') +
+      '<h2 style="margin-top:1.5rem">Success Story</h2><div class="story"><div class="company">' + ss.company + '</div>' +
+      '<p>' + ss.desc + '</p><div class="signals"><span class="signal g">' + ss.sig.g + ' Green</span>' +
+      '<span class="signal y">' + ss.sig.y + ' Yellow</span><span class="signal r">' + ss.sig.r + ' Red</span></div>' +
+      '<h4 style="margin-top:.75rem">What they did right:</h4><ul>' + ss.pts.map(p => '<li>' + p + '</li>').join('') + '</ul>' +
+      '<div class="verdict">' + ss.verdict + '</div></div>' +
+      '<div class="flex justify-center gap flex-wrap" style="margin-top:1.5rem">' +
+      '<button class="btn btn-primary" onclick="step=1;vert=null;ans={};res=null;render()">Start Over</button>' +
+      '<button class="btn btn-secondary" onclick="alert(\'PDF download coming soon!\')">Download PDF</button></div></div>';
+    setTimeout(drawChart, 50);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', render);
 </script>
 </body>
 </html>
