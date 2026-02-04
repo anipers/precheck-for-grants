@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abu Dhabi Startup Readiness Check</title>
+  <title>Startup Readiness Check</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,6 +12,7 @@
       --blue-primary: #124ef5;
       --blue-dark: #0026ab;
       --blue-darker: #001d8a;
+      --blue-light: #4ba8eb;
       --white: #FFFFFF;
       --gray-bg: #f5f7fa;
       --gray-light: #eff1f5;
@@ -26,7 +27,10 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', -apple-system, sans-serif;
-      color: var(--black); background: var(--white); min-height: 100vh; line-height: 1.6;
+      color: var(--black);
+      background: var(--white);
+      min-height: 100vh;
+      line-height: 1.6;
     }
     main { max-width: 100%; margin: 0 auto; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
@@ -38,49 +42,88 @@
     .step { animation: fadeIn .5s ease-out; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     
-    /* HERO - синий блок как на Hub71 */
+    /* HERO */
     .hero {
       background: var(--blue-dark);
       color: var(--white);
-      padding: 6rem 0 8rem;
+      padding: 5rem 0 6rem;
       position: relative;
       overflow: hidden;
     }
     .hero h1 { color: var(--white); font-weight: 800; }
-    .hero p { color: rgba(255,255,255,0.85); font-size: 1.25rem; max-width: 700px; line-height: 1.7; }
+    .hero p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.15rem;
+      max-width: 650px;
+      line-height: 1.8;
+      font-style: italic;
+    }
     
-    /* Геометрический элемент справа - октаэдр */
+    /* Geometric decoration */
     .geo-shape {
       position: absolute;
-      right: 5%;
+      right: 8%;
       top: 50%;
       transform: translateY(-50%);
-      width: 200px;
-      height: 200px;
-      opacity: 0.6;
+      width: 180px;
+      height: 180px;
+      opacity: 0.5;
     }
     .geo-shape svg {
       width: 100%;
       height: 100%;
-      stroke: rgba(255,255,255,0.4);
+      stroke: rgba(255,255,255,0.5);
+      stroke-width: 1;
+      fill: none;
+    }
+    @keyframes rotateGeo {
+      0% { transform: translateY(-50%) rotate(0deg); }
+      100% { transform: translateY(-50%) rotate(360deg); }
+    }
+    .geo-shape { animation: rotateGeo 40s linear infinite; }
+    
+    /* Benefits bar - как на Hub71 */
+    .benefits-bar {
+      background: var(--blue-light);
+      padding: 2.5rem 0;
+      color: var(--white);
+    }
+    .benefits-bar h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .benefit-icon {
+      width: 56px;
+      height: 56px;
+      border: 2px solid rgba(255,255,255,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .benefit-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--white);
       stroke-width: 1.5;
       fill: none;
     }
-    @keyframes rotate3d {
-      0% { transform: translateY(-50%) rotateY(0deg) rotateX(10deg); }
-      100% { transform: translateY(-50%) rotateY(360deg) rotateX(10deg); }
-    }
-    .geo-shape { animation: rotate3d 30s linear infinite; }
-    
-    /* Декоративные линии */
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: 
-        linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.02) 50%, transparent 60%),
-        linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.02) 50%, transparent 60%);
-      pointer-events: none;
+    .benefit-text {
+      font-size: .9rem;
+      line-height: 1.5;
+      color: var(--white);
     }
     
     /* Content Section */
@@ -92,7 +135,7 @@
     @media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1024px) { .grid.v4 { grid-template-columns: repeat(4, 1fr); } }
     
-    /* Cards */
+    /* Cards with outline icons */
     .card {
       background: var(--white);
       border: 1px solid var(--border);
@@ -119,13 +162,39 @@
     .card.clickable {
       cursor: pointer;
       text-align: center;
-      min-height: 220px;
+      min-height: 240px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
-    .icon { font-size: 3rem; margin-bottom: 1rem; }
+    
+    /* Card icon - outline style like Hub71 */
+    .card-icon {
+      width: 72px;
+      height: 72px;
+      border: 2px solid var(--blue-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      transition: all .3s;
+    }
+    .card-icon svg {
+      width: 36px;
+      height: 36px;
+      stroke: var(--blue-primary);
+      stroke-width: 1.5;
+      fill: none;
+      transition: all .3s;
+    }
+    .card:hover .card-icon {
+      background: var(--blue-primary);
+    }
+    .card:hover .card-icon svg {
+      stroke: var(--white);
+    }
+    
     .card-tag {
       display: inline-block;
       background: var(--blue-dark);
@@ -137,8 +206,8 @@
       letter-spacing: 1px;
       margin-bottom: 1rem;
     }
-    .card h3 { color: var(--blue-dark); margin-bottom: .5rem; }
-    .card p { font-size: .95rem; }
+    .card h3 { color: var(--blue-dark); margin-bottom: .5rem; font-size: 1.15rem; }
+    .card p { font-size: .9rem; color: var(--gray); }
     
     /* Question Cards */
     .question-card {
@@ -147,9 +216,9 @@
       padding: 2rem;
       margin-bottom: 1.5rem;
     }
-    .question-card h3 { font-size: 1.15rem; }
+    .question-card h3 { font-size: 1.1rem; color: var(--blue-dark); }
     
-    /* Radio - ПОЛНОСТЬЮ НЕЙТРАЛЬНЫЕ */
+    /* Radio - neutral style */
     .radio-group { display: flex; flex-direction: column; gap: .75rem; margin-top: 1.25rem; }
     .radio {
       display: flex;
@@ -183,7 +252,7 @@
       font-size: 12px;
       color: var(--white);
     }
-    .radio span { color: var(--gray-dark); font-size: 1rem; }
+    .radio span { color: var(--gray-dark); font-size: .95rem; }
     .radio:has(input:checked) {
       background: var(--gray-bg);
       border-color: var(--blue-primary);
@@ -221,9 +290,9 @@
       align-items: center;
       justify-content: center;
       gap: .5rem;
-      padding: 1.1rem 2.5rem;
+      padding: 1rem 2.5rem;
       font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
+      font-size: .95rem;
       font-weight: 600;
       border: none;
       cursor: pointer;
@@ -333,7 +402,7 @@
       flex-wrap: wrap;
       margin-bottom: 1rem;
       color: var(--blue-dark);
-      font-size: 1.1rem;
+      font-size: 1.05rem;
     }
     .priority {
       padding: .3rem .75rem;
@@ -343,7 +412,7 @@
     }
     .priority.high { background: #fee2e2; color: var(--red); }
     .priority.medium { background: #fef3c7; color: var(--yellow); }
-    .action p { font-size: .95rem; margin-bottom: .35rem; }
+    .action p { font-size: .9rem; margin-bottom: .35rem; }
     .action strong { color: var(--black); }
     
     /* Success Story */
@@ -354,7 +423,7 @@
     }
     .story .company {
       font-weight: 700;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       color: var(--blue-dark);
       margin-bottom: .25rem;
     }
@@ -391,7 +460,7 @@
       border: 1px solid var(--border);
       padding: 2rem;
     }
-    .interp h3 { font-size: 1.25rem; margin-bottom: 1rem; }
+    .interp h3 { font-size: 1.2rem; margin-bottom: 1rem; }
     .next-box {
       background: var(--gray-bg);
       padding: 1.5rem;
@@ -400,7 +469,7 @@
     .next-box h4 {
       color: var(--blue-dark);
       margin-bottom: .75rem;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
     }
     .timeline {
       margin-top: 1.25rem;
@@ -440,7 +509,7 @@
       font-size: .9rem;
     }
     
-    /* Back button in header */
+    /* Page header for inner pages */
     .page-header {
       background: var(--blue-dark);
       padding: 2rem 0;
@@ -453,7 +522,7 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
-    .page-header h2 { color: var(--white); margin: 0; }
+    .page-header h2 { color: var(--white); margin: 0; font-size: 1.5rem; }
     .page-header p { color: rgba(255,255,255,0.8); margin: 0; }
     
     /* Utilities */
@@ -468,14 +537,17 @@
     .mt { margin-top: 2rem; }
     
     @media (max-width: 1024px) {
-      .geo-shape { width: 150px; height: 150px; right: 2%; opacity: 0.4; }
+      .geo-shape { width: 140px; height: 140px; right: 3%; opacity: 0.4; }
     }
     @media (max-width: 767px) {
       .container { padding: 0 1.25rem; }
-      .hero { padding: 4rem 0 5rem; }
+      .hero { padding: 3.5rem 0 4rem; }
       .geo-shape { display: none; }
-      .card.clickable { min-height: 180px; padding: 1.5rem; }
-      .icon { font-size: 2.5rem; }
+      .benefits-grid { gap: 1.5rem; }
+      .benefit-item { flex-direction: column; text-align: center; align-items: center; }
+      .card.clickable { min-height: 200px; padding: 1.5rem; }
+      .card-icon { width: 60px; height: 60px; }
+      .card-icon svg { width: 30px; height: 30px; }
       .btn { width: 100%; }
       .donut { width: 160px; height: 160px; }
       .donut-center span { font-size: 3rem; }
@@ -487,11 +559,26 @@
 <body>
 <main id="app"></main>
 <script>
+// SVG Icons - outline style
+const ICONS = {
+  fintech: '<svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><circle cx="16" cy="15" r="2"/></svg>',
+  ai: '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="9" cy="10" r="1.5"/><circle cx="15" cy="10" r="1.5"/><path d="M9 15h6"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></svg>',
+  climate: '<svg viewBox="0 0 24 24"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/><circle cx="12" cy="12" r="5"/></svg>',
+  edtech: '<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>',
+  check: '<svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>',
+  growth: '<svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>',
+  partners: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="9"/><path d="M10 12v9h4v-9"/><line x1="3" y1="21" x2="21" y2="21"/></svg>',
+  investors: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>',
+  regulatory: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="12" y2="16"/></svg>'
+};
+
+const geoSVG = '<svg viewBox="0 0 100 100"><polygon points="50,5 95,30 95,70 50,95 5,70 5,30"/><line x1="50" y1="5" x2="50" y2="95"/><line x1="5" y1="30" x2="95" y2="70"/><line x1="95" y1="30" x2="5" y2="70"/></svg>';
+
 const V = [
-  { id: 'fintech', name: 'Fintech / Web3', icon: '💳', desc: 'Payments, DeFi, Banking, Crypto', tag: 'Digital Assets' },
-  { id: 'ai', name: 'AI', icon: '🤖', desc: 'Machine Learning, LLMs, Computer Vision', tag: 'Artificial Intelligence' },
-  { id: 'climate', name: 'ClimateTech', icon: '🌱', desc: 'Sustainability, Clean Energy, Carbon', tag: 'Climate Tech' },
-  { id: 'edtech', name: 'EdTech', icon: '📚', desc: 'Learning, Skills, Education Platforms', tag: 'Education' }
+  { id: 'fintech', name: 'Fintech / Web3', icon: 'fintech', desc: 'Payments, DeFi, Banking, Crypto', tag: 'Digital Assets' },
+  { id: 'ai', name: 'AI', icon: 'ai', desc: 'Machine Learning, LLMs, Computer Vision', tag: 'Artificial Intelligence' },
+  { id: 'climate', name: 'ClimateTech', icon: 'climate', desc: 'Sustainability, Clean Energy, Carbon', tag: 'Climate Tech' },
+  { id: 'edtech', name: 'EdTech', icon: 'edtech', desc: 'Learning, Skills, Education Platforms', tag: 'Education' }
 ];
 
 const C = {
@@ -499,43 +586,43 @@ const C = {
     { id: 'stage', label: 'Product Stage', g: 'Live with paying users', y: 'MVP in testing', r: 'Idea stage only' },
     { id: 'traction', label: 'Traction Proof', g: 'Active users or revenue', y: 'POCs in progress', r: 'No validation yet' },
     { id: 'metrics', label: 'Business Metrics', g: 'Track MRR, CAC, LTV', y: 'Track some metrics', r: "Don't track metrics" },
-    { id: 'regulatory', label: 'Regulatory Knowledge', g: 'Know ADGM, have roadmap', y: 'Basic awareness', r: 'No knowledge' },
-    { id: 'abudhabi', label: 'Abu Dhabi Strategy', g: 'Clear go-to-market plan', y: 'General interest', r: 'No specific rationale' }
+    { id: 'regulatory', label: 'Regulatory Knowledge', g: 'Know regulations, have roadmap', y: 'Basic awareness', r: 'No knowledge' },
+    { id: 'market', label: 'Market Strategy', g: 'Clear go-to-market plan', y: 'General interest', r: 'No specific rationale' }
   ],
   ai: [
     { id: 'aicore', label: 'AI Core', g: 'Without AI = no product', y: 'AI is important feature', r: 'AI is nice-to-have' },
     { id: 'aiteam', label: 'AI Team', g: 'ML lead with 3+ years', y: 'Junior ML engineer', r: 'No AI expertise' },
     { id: 'validation', label: 'Validation', g: 'Real pilots with partners', y: 'Lab tests only', r: 'No validation yet' },
     { id: 'modelmetrics', label: 'Model Metrics', g: 'Track accuracy, latency, cost', y: 'Track some metrics', r: "Don't track metrics" },
-    { id: 'abudhabiai', label: 'Abu Dhabi AI Ecosystem', g: 'Plan to use local AI resources', y: 'General interest', r: 'No specific plan' }
+    { id: 'ecosystem', label: 'AI Ecosystem Fit', g: 'Plan to integrate with ecosystem', y: 'General interest', r: 'No specific plan' }
   ],
   climate: [
     { id: 'climatelogic', label: 'Climate Logic', g: 'Clear CO2/energy reduction path', y: 'General climate benefit', r: 'Unclear connection' },
     { id: 'impactmodel', label: 'Impact Model', g: 'Calculate CO2e/energy saved', y: 'Rough estimates', r: 'No calculations' },
     { id: 'pilotready', label: 'Pilot Readiness', g: 'Ready for pilot now', y: 'Prototype stage', r: 'Not ready yet' },
-    { id: 'localrelevance', label: 'Local Relevance', g: 'Ties to UAE Net Zero 2050', y: 'MENA relevant', r: 'No local angle' },
+    { id: 'localrelevance', label: 'Local Relevance', g: 'Ties to regional climate goals', y: 'Generally relevant', r: 'No local angle' },
     { id: 'partnerships', label: 'Partnerships', g: 'Talks with local partners', y: 'Partners identified', r: 'No partners yet' }
   ],
   edtech: [
     { id: 'learningoutcome', label: 'Learning Outcome', g: 'Specific measurable outcome', y: 'General improvement', r: 'Unclear outcome' },
     { id: 'targetuser', label: 'Target User', g: 'Clear ICP and buyer', y: 'Know user, unclear buyer', r: 'Unclear on both' },
     { id: 'engagement', label: 'Engagement', g: 'High DAU, good retention', y: 'Medium engagement', r: 'Low engagement' },
-    { id: 'marketmena', label: 'MENA Market', g: 'Strong MENA relevance', y: 'Could work in MENA', r: 'Not MENA-specific' },
+    { id: 'market', label: 'Market Fit', g: 'Strong regional relevance', y: 'Could work regionally', r: 'Not region-specific' },
     { id: 'edpartners', label: 'Partnerships', g: 'School/Ministry partnerships', y: 'Potential partners', r: 'No partnerships yet' }
   ]
 };
 
 const I = {
-  A: { emoji: '✅', title: 'High Readiness', sub: 'You look like a STRONG candidate for Abu Dhabi accelerator programs.',
-    pts: ['Clear product-market fit signals', 'Evidence of real traction', 'Ready for Abu Dhabi expansion'],
-    next: ["Apply now — don't wait for perfection", 'Focus your pitch on strong signals', 'Position Abu Dhabi as strategic choice'],
+  A: { emoji: '✅', title: 'High Readiness', sub: 'You look like a STRONG candidate for accelerator programs.',
+    pts: ['Clear product-market fit signals', 'Evidence of real traction', 'Ready for rapid scaling'],
+    next: ["Apply now — don't wait for perfection", 'Focus your pitch on strong signals', 'Position yourself as a strategic choice'],
     time: 'Apply within 1 week' },
   B: { emoji: '🟡', title: 'Borderline', sub: 'You have a SOLID FOUNDATION but need to strengthen a few areas.',
     pts: ['You understand what matters', 'Some risks, but manageable', 'Accelerators can help fill gaps'],
     next: ['Strengthen your weaker signals (2-4 weeks)', 'Option A: Apply now, explain gaps honestly', 'Option B: Improve for 3 weeks, then apply'],
     time: '2-4 weeks improvement → apply' },
   C: { emoji: '🔴', title: 'Early Stage', sub: "Your profile doesn't match typical accelerator candidates YET.",
-    pts: ['Too early stage OR', 'Missing key validation OR', 'Unclear Abu Dhabi strategy'], neg: true,
+    pts: ['Too early stage OR', 'Missing key validation OR', 'Unclear market strategy'], neg: true,
     next: ['Consider earlier-stage programs', 'Month 1-2: Get live product + validation', 'Month 3: Build team + market clarity'],
     time: '3-4 months → re-assess' }
 };
@@ -543,15 +630,15 @@ const I = {
 const SS = {
   fintech: { company: 'QuickPay', desc: 'Expense Management SaaS', sig: { g: 6, y: 2, r: 0 },
     pts: ['$1.2M profit, not just idea', 'Clear ICP and market', '800% YoY growth'],
-    verdict: "Verdict: 'Strong candidate, help needed with Abu Dhabi partnerships'" },
+    verdict: "Verdict: 'Strong candidate, help needed with regional partnerships'" },
   ai: { company: 'VisionAI', desc: 'Computer vision platform for retail analytics', sig: { g: 5, y: 0, r: 0 },
-    pts: ['AI core to product value', 'ML team with 5+ years', 'Active pilots with 3 retailers', 'Planned local AI integration'],
+    pts: ['AI core to product value', 'ML team with 5+ years', 'Active pilots with 3 retailers', 'Ecosystem integration planned'],
     verdict: 'Fast-tracked to AI program, secured enterprise partnerships' },
-  climate: { company: 'CarbonTrack', desc: 'Carbon accounting platform for UAE companies', sig: { g: 4, y: 1, r: 0 },
-    pts: ['Clear CO2 reduction methodology', 'Quantified impact model', 'UAE Net Zero 2050 alignment', 'Local partnership talks'],
+  climate: { company: 'CarbonTrack', desc: 'Carbon accounting platform', sig: { g: 4, y: 1, r: 0 },
+    pts: ['Clear CO2 reduction methodology', 'Quantified impact model', 'Climate goals alignment', 'Local partnership talks'],
     verdict: 'Accepted to ClimateTech cohort' },
   edtech: { company: 'LearnMENA', desc: 'Arabic-first K-12 learning platform', sig: { g: 3, y: 2, r: 0 },
-    pts: ['+15% test score improvement', 'Clear ICP: K-12 + schools', '70% DAU, 85% retention', 'Strong MENA relevance'],
+    pts: ['+15% test score improvement', 'Clear ICP: K-12 + schools', '70% DAU, 85% retention', 'Strong regional relevance'],
     verdict: 'Accepted to EdTech program' }
 };
 
@@ -559,23 +646,22 @@ const AT = {
   stage: { a: 'Launch payment pilot', h: 'Integrate Stripe, get 5-10 payments', s: '5+ payments, ≥$100', t: '1-2 weeks' },
   traction: { a: 'Get paying customers', h: 'Launch beta, early-bird pricing', s: '5+ customers or 100+ users', t: '3-4 weeks' },
   metrics: { a: 'Set up analytics', h: 'Mixpanel/Amplitude for MRR, CAC, LTV', s: 'Weekly dashboard', t: '1 week' },
-  regulatory: { a: 'Research ADGM', h: 'Book ADGM consultation', s: 'Licensing roadmap', t: '2-3 weeks' },
-  abudhabi: { a: 'Define Abu Dhabi GTM', h: 'Research local market', s: '3+ use cases', t: '1-2 weeks' },
+  regulatory: { a: 'Research regulations', h: 'Book regulatory consultation', s: 'Licensing roadmap', t: '2-3 weeks' },
+  market: { a: 'Define GTM strategy', h: 'Research target market', s: '3+ use cases', t: '1-2 weeks' },
   aicore: { a: 'Strengthen AI core', h: 'Make core features require AI', s: 'Cannot work without AI', t: '2-3 weeks' },
   aiteam: { a: 'Hire ML expertise', h: 'AI job boards', s: 'ML lead 3+ years', t: '4-6 weeks' },
   validation: { a: 'Secure real pilots', h: 'Reach 10 partners', s: '2+ agreements', t: '3-4 weeks' },
   modelmetrics: { a: 'Model monitoring', h: 'MLflow tracking', s: 'Metrics dashboard', t: '1-2 weeks' },
-  abudhabiai: { a: 'Explore local AI ecosystem', h: 'Attend events', s: 'Integration plan', t: '2-3 weeks' },
+  ecosystem: { a: 'Explore ecosystem', h: 'Attend events', s: 'Integration plan', t: '2-3 weeks' },
   climatelogic: { a: 'Document CO2 path', h: 'Create methodology', s: 'Clear mechanism', t: '1 week' },
   impactmodel: { a: 'Build calculator', h: 'CO2e calculation tool', s: 'Working calculator', t: '1-2 weeks' },
   pilotready: { a: 'Prepare pilot', h: 'Complete prototype', s: '1 committed partner', t: '3-4 weeks' },
-  localrelevance: { a: 'UAE Net Zero link', h: 'Document alignment', s: 'Alignment doc', t: '1 week' },
+  localrelevance: { a: 'Regional alignment', h: 'Document alignment', s: 'Alignment doc', t: '1 week' },
   partnerships: { a: 'Climate partners', h: 'Contact local energy companies', s: '2+ discussions', t: '2-4 weeks' },
   learningoutcome: { a: 'Define outcomes', h: 'Pre/post assessments', s: '+15% scores', t: '1-2 weeks' },
   targetuser: { a: 'Clarify ICP', h: 'Interview 10 users', s: 'Persona doc', t: '1-2 weeks' },
   engagement: { a: 'Improve retention', h: 'Gamification, streaks', s: '50%+ DAU', t: '3-4 weeks' },
-  marketmena: { a: 'Localize MENA', h: 'Arabic content', s: 'MENA features', t: '2-4 weeks' },
-  edpartners: { a: 'School partnerships', h: 'Abu Dhabi schools', s: '3+ discussions', t: '2-4 weeks' }
+  edpartners: { a: 'School partnerships', h: 'Regional schools', s: '3+ discussions', t: '2-4 weeks' }
 };
 
 let step = 1, vert = null, ans = {}, res = null;
@@ -611,16 +697,16 @@ function drawChart() {
   });
 }
 
-const geoSVG = '<svg viewBox="0 0 100 100"><polygon points="50,5 95,30 95,70 50,95 5,70 5,30"/><line x1="50" y1="5" x2="50" y2="95"/><line x1="5" y1="30" x2="95" y2="70"/><line x1="95" y1="30" x2="5" y2="70"/><line x1="5" y1="50" x2="95" y2="50"/></svg>';
-
 function render() {
   const app = $('app');
   if (step === 1) {
-    app.innerHTML = '<div class="step"><div class="hero"><div class="container"><h1>Grow your startup<br>in Abu Dhabi</h1><p>Are you a disruptive entrepreneur or a pioneering problem-solver seeking investment? Check your readiness for Abu Dhabi\'s leading accelerator programs. Select your vertical to begin.</p><div style="margin-top:2rem"><a href="#verticals" class="btn btn-white">GET STARTED →</a></div></div><div class="geo-shape">' + geoSVG + '</div></div><section id="verticals" class="content-section"><div class="container"><h2>Select Your Vertical</h2><p style="color:var(--gray);margin-bottom:2rem">Choose the category that best describes your startup</p><div class="grid v4">' +
-      V.map(v => '<div class="card clickable" onclick="sel(\'' + v.id + '\')"><span class="card-tag">' + v.tag + '</span><div class="icon">' + v.icon + '</div><h3>' + v.name + '</h3><p>' + v.desc + '</p></div>').join('') + '</div></div></section></div>';
+    app.innerHTML = '<div class="step"><div class="hero"><div class="container"><h1>Startup<br>Readiness Check</h1><p>Are you a disruptive entrepreneur, or a pioneering problem-solver or innovative startup seeking investment options? Check your readiness for leading accelerator programs.</p><div style="margin-top:2rem"><a href="#verticals" class="btn btn-white">GET STARTED →</a></div></div><div class="geo-shape">' + geoSVG + '</div></div>' +
+      '<div class="benefits-bar"><div class="container"><h4>A vibrant tech community</h4><div class="benefits-grid"><div class="benefit-item"><div class="benefit-icon">' + ICONS.check + '</div><div class="benefit-text">Comprehensive readiness assessment</div></div><div class="benefit-item"><div class="benefit-icon">' + ICONS.growth + '</div><div class="benefit-text">Growth with accelerator programs</div></div><div class="benefit-item"><div class="benefit-icon">' + ICONS.partners + '</div><div class="benefit-text">Engage with corporate partners</div></div><div class="benefit-item"><div class="benefit-icon">' + ICONS.investors + '</div><div class="benefit-text">Gain access to investors</div></div><div class="benefit-item"><div class="benefit-icon">' + ICONS.regulatory + '</div><div class="benefit-text">Favourable regulatory environment</div></div></div></div></div>' +
+      '<section id="verticals" class="content-section"><div class="container"><h2>Select Your Vertical</h2><p style="color:var(--gray);margin-bottom:2rem">Choose the category that best describes your startup</p><div class="grid v4">' +
+      V.map(v => '<div class="card clickable" onclick="sel(\'' + v.id + '\')"><span class="card-tag">' + v.tag + '</span><div class="card-icon">' + ICONS[v.icon] + '</div><h3>' + v.name + '</h3><p>' + v.desc + '</p></div>').join('') + '</div></div></section></div>';
   } else if (step === 2) {
     const vd = V.find(x => x.id === vert), cr = C[vert], n = Object.keys(ans).length;
-    app.innerHTML = '<div class="step"><div class="page-header"><div class="container"><div><h2>' + vd.icon + ' ' + vd.name + '</h2><p>Answer all questions to see your readiness score</p></div><button class="btn btn-white" onclick="step=1;vert=null;ans={};render()">← BACK</button></div></div><section class="content-section"><div class="container"><div class="progress-section"><div class="progress-label"><span>Progress</span><span id="pc">' + n + ' / ' + cr.length + '</span></div><div class="progress"><div class="progress-fill" id="pf" style="width:' + (n / cr.length * 100) + '%"></div></div></div>' +
+    app.innerHTML = '<div class="step"><div class="page-header"><div class="container"><div><h2>' + vd.name + ' Assessment</h2><p>Answer all questions to see your readiness score</p></div><button class="btn btn-white" onclick="step=1;vert=null;ans={};render()">← BACK</button></div></div><section class="content-section"><div class="container"><div class="progress-section"><div class="progress-label"><span>Progress</span><span id="pc">' + n + ' / ' + cr.length + '</span></div><div class="progress"><div class="progress-fill" id="pf" style="width:' + (n / cr.length * 100) + '%"></div></div></div>' +
       cr.map((c, i) => '<div class="question-card"><h3>' + (i + 1) + '. ' + c.label + '</h3><div class="radio-group"><label class="radio"><input type="radio" name="' + c.id + '"' + (ans[c.id] === 'g' ? ' checked' : '') + ' onchange="answer(\'' + c.id + '\',\'g\')"><span>' + c.g + '</span></label><label class="radio"><input type="radio" name="' + c.id + '"' + (ans[c.id] === 'y' ? ' checked' : '') + ' onchange="answer(\'' + c.id + '\',\'y\')"><span>' + c.y + '</span></label><label class="radio"><input type="radio" name="' + c.id + '"' + (ans[c.id] === 'r' ? ' checked' : '') + ' onchange="answer(\'' + c.id + '\',\'r\')"><span>' + c.r + '</span></label></div></div>').join('') +
       '<div class="flex justify-center mt"><button id="calc" class="btn btn-primary"' + (n === cr.length ? '' : ' disabled') + ' onclick="calc()">CALCULATE RESULTS →</button></div></div></section></div>';
   } else {
@@ -629,7 +715,7 @@ function render() {
       '<section class="content-section"><div class="container"><div class="interp mb"><h3>' + int.emoji + ' ' + int.sub + '</h3><h4 style="margin-top:1.25rem;color:var(--gray-dark)">What this means:</h4><ul class="points ' + (int.neg ? 'neg' : 'pos') + '">' + int.pts.map(p => '<li>' + p + '</li>').join('') + '</ul><div class="next-box"><h4>Recommended next steps:</h4><ul style="list-style:none;margin:.75rem 0">' + int.next.map(s => '<li style="color:var(--gray-dark);padding:.35rem 0">→ ' + s + '</li>').join('') + '</ul></div><span class="timeline">📅 ' + int.time + '</span></div>' +
       (plan.length ? '<h2 class="mt">Your Action Plan</h2><p class="mb" style="color:var(--gray)">Focus on these areas to improve your readiness:</p><div class="grid">' + plan.map(p => '<div class="action"><h4>' + (p.pr === 'high' ? '❌' : '⚠️') + ' ' + p.label + '<span class="priority ' + p.pr + '">' + p.pr + '</span></h4><p><strong>Current:</strong> ' + p.cur + '</p><p><strong>→ Action:</strong> ' + p.a + '</p><p><strong>→ How:</strong> ' + p.h + '</p><p><strong>→ Success:</strong> ' + p.s + '</p><p><strong>→ Timeline:</strong> ' + p.t + '</p></div>').join('') + '</div>' : '') +
       '<h2 class="mt">Success Story</h2><div class="story"><div class="company">' + ss.company + '</div><p style="color:var(--gray)">' + ss.desc + '</p><div class="signals"><span class="signal g">' + ss.sig.g + ' Strong</span><span class="signal y">' + ss.sig.y + ' Moderate</span><span class="signal r">' + ss.sig.r + ' Weak</span></div><h4 style="margin-top:1rem;color:var(--gray-dark)">What they did right:</h4><ul>' + ss.pts.map(p => '<li>' + p + '</li>').join('') + '</ul><div class="verdict">' + ss.verdict + '</div></div>' +
-      '<div class="flex justify-center gap flex-wrap mt"><button class="btn btn-primary" onclick="step=1;vert=null;ans={};res=null;render()">START OVER</button><button class="btn btn-secondary" onclick="alert(\'PDF download coming soon!\')">DOWNLOAD PDF</button></div></div></section><div class="footer">This tool helps you self-assess readiness for Abu Dhabi startup accelerator programs.</div></div>';
+      '<div class="flex justify-center gap flex-wrap mt"><button class="btn btn-primary" onclick="step=1;vert=null;ans={};res=null;render()">START OVER</button><button class="btn btn-secondary" onclick="alert(\'PDF download coming soon!\')">DOWNLOAD PDF</button></div></div></section><div class="footer">Startup Readiness Check — Self-assessment tool for accelerator programs</div></div>';
     setTimeout(drawChart, 50);
   }
 }
