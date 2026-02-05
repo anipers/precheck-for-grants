@@ -501,17 +501,17 @@
       gap: .75rem;
     }
     .question-number {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       background: var(--primary);
       color: var(--white);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: .85rem;
+      font-size: .75rem;
       font-weight: 600;
       flex-shrink: 0;
-      border-radius: 50%;
+      font-family: 'Poppins', sans-serif;
     }
 
     /* Radio Buttons */
@@ -563,7 +563,7 @@
       font-size: .95rem;
     }
     .radio:has(input:checked) {
-      background: rgba(37, 99, 235, 0.05);
+      background: rgba(40, 69, 247, 0.05);
       border-color: var(--primary);
     }
     .radio:has(input:checked) span {
@@ -597,21 +597,21 @@
       transition: width .4s ease;
     }
 
-    /* Buttons */
+    /* Buttons - Hub71 Style */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: .5rem;
-      padding: 1rem 2.5rem;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: .9rem;
+      padding: 1rem 2rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: .75rem;
       font-weight: 600;
       border: none;
       cursor: pointer;
-      transition: all .3s;
+      transition: all .2s;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
     }
     .btn-primary {
       background: var(--primary);
@@ -620,16 +620,16 @@
     .btn-primary:hover {
       background: var(--primary-dark);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+      box-shadow: 0 8px 20px rgba(40, 69, 247, 0.25);
     }
     .btn-secondary {
       background: var(--white);
-      color: var(--primary);
-      border: 1.5px solid var(--primary);
+      color: var(--black);
+      border: 1px solid var(--gray-300);
     }
     .btn-secondary:hover {
-      background: var(--primary);
-      color: var(--white);
+      border-color: var(--primary);
+      color: var(--primary);
     }
     .btn-white {
       background: var(--white);
@@ -645,9 +645,9 @@
       transform: none;
     }
 
-    /* Results Section */
+    /* Results Section - Hub71 Style */
     .result-hero {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      background: var(--primary);
       color: var(--white);
       padding: 5rem 0;
       text-align: center;
@@ -655,6 +655,7 @@
     .result-hero h1 {
       color: var(--white);
       margin-bottom: 3rem;
+      font-style: italic;
     }
 
     /* Speedometer Gauge */
@@ -680,7 +681,7 @@
       text-align: center;
     }
     .gauge-score {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-size: 2.5rem;
       font-weight: 700;
       color: var(--white);
@@ -688,7 +689,7 @@
     }
     .gauge-label {
       color: rgba(255,255,255,0.6);
-      font-size: .75rem;
+      font-size: .7rem;
       text-transform: uppercase;
       letter-spacing: 2px;
       margin-top: .25rem;
@@ -701,14 +702,14 @@
       gap: .75rem;
       padding: 1rem 2rem;
       font-weight: 600;
-      font-size: 1rem;
-      font-family: 'Space Grotesk', sans-serif;
+      font-size: .85rem;
+      font-family: 'Poppins', sans-serif;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
     .tier-a { background: var(--green); color: var(--white); }
     .tier-b { background: var(--yellow); color: var(--white); }
-    .tier-c { background: var(--red); color: var(--white); }
+    .tier-c { background: var(--accent-orange); color: var(--white); }
 
     /* Score Legend */
     .score-legend {
@@ -761,14 +762,14 @@
     .timeline-badge {
       margin-top: 1.5rem;
       padding: .75rem 1.5rem;
-      background: var(--primary);
+      background: var(--accent-orange);
       color: var(--white);
       display: inline-flex;
       align-items: center;
       gap: .5rem;
       font-weight: 600;
-      font-size: .9rem;
-      border-radius: 4px;
+      font-size: .8rem;
+      font-family: 'Poppins', sans-serif;
     }
     .points { list-style: none; margin: 1rem 0; }
     .points li {
@@ -829,18 +830,23 @@
     }
     .action strong { color: var(--black); }
 
-    /* Success Story */
+    /* Success Story - Hub71 Style */
     .story {
-      background: var(--gray-100);
-      border-left: 3px solid var(--primary);
+      background: var(--gray-800);
+      border-left: none;
       padding: 2.5rem;
+      color: var(--white);
     }
     .story .company {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Poppins', sans-serif;
       font-weight: 700;
       font-size: 1.5rem;
-      color: var(--primary);
+      font-style: italic;
+      color: var(--white);
       margin-bottom: .25rem;
+    }
+    .story .desc {
+      color: rgba(255,255,255,0.7);
     }
     .signals {
       display: flex;
@@ -850,17 +856,17 @@
     }
     .signal {
       padding: .35rem 1rem;
-      font-size: .8rem;
+      font-size: .75rem;
       font-weight: 500;
     }
-    .signal.g { background: var(--green-light); color: var(--green); }
-    .signal.y { background: var(--yellow-light); color: var(--yellow); }
-    .signal.r { background: var(--red-light); color: var(--red); }
+    .signal.g { background: var(--green); color: var(--white); }
+    .signal.y { background: var(--yellow); color: var(--white); }
+    .signal.r { background: var(--accent-orange); color: var(--white); }
     .story ul { list-style: none; margin: 1rem 0; }
     .story li {
       padding: .4rem 0 .4rem 1.75rem;
       position: relative;
-      color: var(--gray-700);
+      color: rgba(255,255,255,0.85);
       font-size: .95rem;
     }
     .story li::before {
@@ -868,16 +874,16 @@
       position: absolute;
       left: 0;
       top: .85rem;
-      width: 8px;
-      height: 8px;
-      background: var(--primary);
+      width: 6px;
+      height: 6px;
+      background: var(--accent-orange);
     }
     .verdict {
       margin-top: 1.5rem;
       padding-top: 1.5rem;
-      border-top: 1px solid var(--gray-300);
+      border-top: 1px solid rgba(255,255,255,0.2);
       font-style: italic;
-      color: var(--gray-600);
+      color: rgba(255,255,255,0.7);
     }
 
     /* Page Header */
@@ -903,12 +909,12 @@
       margin: 0;
     }
 
-    /* Footer */
+    /* Footer - Hub71 Style */
     .footer {
       text-align: center;
       padding: 3rem 2rem;
-      background: var(--primary-dark);
-      color: rgba(255,255,255,0.7);
+      background: var(--black);
+      color: rgba(255,255,255,0.6);
       font-size: .85rem;
     }
 
@@ -957,12 +963,15 @@
 <header class="site-header">
   <div class="container">
     <a href="#" class="logo-link" onclick="step=1;vert=null;ans={};res=null;render();return false;">
-      <span class="logo-text">Check Your Readiness</span>
+      <span class="logo-text">FRA</span>
     </a>
     <div class="header-actions">
       <button class="header-btn" id="langBtn" onclick="toggleLang()" title="Arabic">AR</button>
       <button class="header-btn" id="a11yBtn" onclick="toggleA11yModal()" title="Accessibility">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M12 8v8M8 10h8M9 22l3-6 3 6"/></svg>
+      </button>
+      <button class="header-btn menu-btn" title="Menu">
+        <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
       </button>
     </div>
   </div>
