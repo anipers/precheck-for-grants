@@ -34,21 +34,10 @@
       min-height: 100vh;
       line-height: 1.6;
     }
-    /* High contrast mode */
-    body.high-contrast {
-      --white: #000000;
-      --black: #FFFFFF;
-      --gray-bg: #1a1a1a;
-      --gray-light: #2a2a2a;
-      --gray: #cccccc;
-      --gray-dark: #e0e0e0;
-      --border: #444444;
+    /* Contrast mode - Hub71 style: grayscale filter on entire page */
+    body.contrast {
+      filter: grayscale(100%) contrast(120%);
     }
-    body.high-contrast .site-header { background: #000; border-color: #333; }
-    body.high-contrast .hero { background: #000; }
-    body.high-contrast .benefits-bar { background: #1a1a1a; }
-    body.high-contrast .card { background: #1a1a1a; }
-    body.high-contrast .footer { background: #000; }
     
     /* RTL support */
     html[dir="rtl"] body { font-family: 'Poppins', 'Noto Sans Arabic', sans-serif; }
@@ -145,99 +134,132 @@
       background: var(--blue-dark);
     }
     
-    /* Accessibility Modal */
+    /* Accessibility Modal - Hub71 style */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
+      background: transparent;
       z-index: 2000;
       display: none;
       align-items: flex-start;
       justify-content: flex-end;
-      padding: 1rem;
+      padding: 0;
     }
     .modal-overlay.open { display: flex; }
     .a11y-modal {
       background: var(--white);
-      width: 320px;
+      width: 380px;
       max-width: 100%;
       box-shadow: 0 10px 40px rgba(0,0,0,0.2);
       animation: slideIn .3s ease;
+      margin-top: 70px;
+      margin-right: 1rem;
     }
     @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
     .a11y-header {
-      background: var(--gray-bg);
-      padding: 1rem 1.5rem;
+      background: var(--blue-dark);
+      padding: 1.25rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--border);
     }
     .a11y-header h3 {
       margin: 0;
-      font-size: 1rem;
-      color: var(--blue-dark);
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
     .a11y-close {
-      background: none;
+      background: var(--white);
       border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
       cursor: pointer;
-      padding: .5rem;
       display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
     }
+    .a11y-close:hover { background: #f0f0f0; }
     .a11y-close svg {
-      width: 20px;
-      height: 20px;
-      stroke: var(--gray-dark);
-      stroke-width: 2;
+      width: 14px;
+      height: 14px;
+      stroke: var(--blue-dark);
+      stroke-width: 2.5;
     }
     .a11y-section {
-      padding: 1.5rem;
-      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 1.5rem 1rem;
     }
-    .a11y-section:last-child { border-bottom: none; }
     .a11y-section h4 {
-      font-size: .85rem;
-      color: var(--gray);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--black);
+      text-transform: none;
+      letter-spacing: 0;
+      margin-bottom: 1.25rem;
     }
-    .a11y-options {
+    .a11y-toggle-btn {
       display: flex;
-      gap: .5rem;
-    }
-    .a11y-opt {
-      flex: 1;
-      padding: .75rem;
+      align-items: center;
+      gap: .75rem;
+      padding: 1rem 1.25rem;
       background: var(--white);
       border: 1px solid var(--border);
       cursor: pointer;
-      text-align: center;
       font-family: 'Poppins', sans-serif;
       font-size: .9rem;
       color: var(--gray-dark);
       transition: all .2s;
+      width: auto;
     }
-    .a11y-opt:hover { border-color: var(--blue-primary); }
-    .a11y-opt.active {
-      background: var(--blue-primary);
-      color: var(--white);
+    .a11y-toggle-btn:hover { border-color: var(--gray); background: #fafafa; }
+    .a11y-toggle-btn.active {
       border-color: var(--blue-primary);
+      background: #f0f4ff;
+    }
+    .a11y-toggle-btn svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      fill: none;
+      flex-shrink: 0;
+    }
+    .a11y-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 1.5rem;
+    }
+    .a11y-reset-section {
+      padding: 1.5rem;
+      text-align: center;
     }
     .a11y-reset {
-      width: 100%;
-      padding: .75rem;
-      background: var(--gray-bg);
-      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      padding: .875rem 3rem;
+      background: #c8102e;
+      border: none;
       cursor: pointer;
       font-family: 'Poppins', sans-serif;
       font-size: .9rem;
-      color: var(--gray-dark);
+      font-weight: 500;
+      color: var(--white);
       transition: all .2s;
-      margin-top: 1rem;
     }
-    .a11y-reset:hover { background: var(--border); }
+    .a11y-reset:hover { background: #a00d24; }
+    .a11y-reset svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
     
     /* HERO */
     .hero {
@@ -775,7 +797,7 @@
   </div>
 </header>
 
-<!-- Accessibility Modal -->
+<!-- Accessibility Modal - Hub71 style -->
 <div class="modal-overlay" id="a11yModal" onclick="if(event.target===this)toggleA11yModal()">
   <div class="a11y-modal">
     <div class="a11y-header">
@@ -786,22 +808,25 @@
     </div>
     <div class="a11y-section">
       <h4>Text</h4>
-      <p style="margin-bottom:.75rem;font-size:.85rem;color:var(--gray)">Font Size</p>
-      <div class="a11y-options">
-        <button class="a11y-opt" onclick="setFontSize(14)" data-size="14">A-</button>
-        <button class="a11y-opt active" onclick="setFontSize(16)" data-size="16">A</button>
-        <button class="a11y-opt" onclick="setFontSize(18)" data-size="18">A+</button>
-        <button class="a11y-opt" onclick="setFontSize(20)" data-size="20">A++</button>
-      </div>
+      <button class="a11y-toggle-btn" id="fontSizeBtn" onclick="toggleFontSize()">
+        <svg viewBox="0 0 24 24"><text x="2" y="18" font-size="12" font-weight="bold" fill="currentColor" stroke="none">T</text><text x="12" y="18" font-size="16" font-weight="bold" fill="currentColor" stroke="none">T</text></svg>
+        <span>Font Size</span>
+      </button>
     </div>
+    <div class="a11y-divider"></div>
     <div class="a11y-section">
       <h4>Visual Assistance</h4>
-      <p style="margin-bottom:.75rem;font-size:.85rem;color:var(--gray)">Contrast</p>
-      <div class="a11y-options">
-        <button class="a11y-opt active" onclick="setContrast('normal')" data-contrast="normal">Normal</button>
-        <button class="a11y-opt" onclick="setContrast('high')" data-contrast="high">High</button>
-      </div>
-      <button class="a11y-reset" onclick="resetA11y()">Reset</button>
+      <button class="a11y-toggle-btn" id="contrastBtn" onclick="toggleContrast()">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"/></svg>
+        <span>Contrast</span>
+      </button>
+    </div>
+    <div class="a11y-divider"></div>
+    <div class="a11y-reset-section">
+      <button class="a11y-reset" onclick="resetA11y()">
+        <svg viewBox="0 0 24 24"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+        <span>Reset</span>
+      </button>
     </div>
   </div>
 </div>
@@ -809,10 +834,10 @@
 <main id="app"></main>
 
 <script>
-// Accessibility functions
+// Accessibility functions - Hub71 style
 let currentLang = 'en';
-let currentFontSize = 16;
-let currentContrast = 'normal';
+let fontSizeEnabled = false;
+let contrastEnabled = false;
 
 function toggleLang() {
   currentLang = currentLang === 'en' ? 'ar' : 'en';
@@ -837,25 +862,48 @@ function toggleA11yModal() {
   modal.classList.toggle('open');
 }
 
-function setFontSize(size) {
-  currentFontSize = size;
-  document.documentElement.style.setProperty('--font-size-base', size + 'px');
-  document.querySelectorAll('.a11y-opt[data-size]').forEach(btn => {
-    btn.classList.toggle('active', parseInt(btn.dataset.size) === size);
-  });
+// Hub71 style: Font Size toggle - switches between 16px and 18px
+function toggleFontSize() {
+  fontSizeEnabled = !fontSizeEnabled;
+  const html = document.documentElement;
+  const btn = document.getElementById('fontSizeBtn');
+
+  if (fontSizeEnabled) {
+    html.style.fontSize = '18px';
+    document.body.classList.add('fontSize');
+    btn.classList.add('active');
+  } else {
+    html.style.fontSize = '16px';
+    document.body.classList.remove('fontSize');
+    btn.classList.remove('active');
+  }
 }
 
-function setContrast(mode) {
-  currentContrast = mode;
-  document.body.classList.toggle('high-contrast', mode === 'high');
-  document.querySelectorAll('.a11y-opt[data-contrast]').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.contrast === mode);
-  });
+// Hub71 style: Contrast toggle - applies grayscale(100%) contrast(120%) filter
+function toggleContrast() {
+  contrastEnabled = !contrastEnabled;
+  const btn = document.getElementById('contrastBtn');
+
+  if (contrastEnabled) {
+    document.body.classList.add('contrast');
+    btn.classList.add('active');
+  } else {
+    document.body.classList.remove('contrast');
+    btn.classList.remove('active');
+  }
 }
 
 function resetA11y() {
-  setFontSize(16);
-  setContrast('normal');
+  // Reset font size
+  fontSizeEnabled = false;
+  document.documentElement.style.fontSize = '16px';
+  document.body.classList.remove('fontSize');
+  document.getElementById('fontSizeBtn').classList.remove('active');
+
+  // Reset contrast
+  contrastEnabled = false;
+  document.body.classList.remove('contrast');
+  document.getElementById('contrastBtn').classList.remove('active');
 }
 
 // SVG Icons
