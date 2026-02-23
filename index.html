@@ -9,12 +9,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Hub71 Primary Colors */
+      /* Brand Colors */
       --primary: #0026AB;
       --primary-dark: #001d82;
       --primary-light: #124EF5;
-      --hub71-light-blue: #4BACE9;
-      --hub71-green: #6BCE97;
+      --accent-blue: #4BACE9;
+      --accent-green: #6BCE97;
       --accent-orange: #e85d3f;
 
       /* Neutrals */
@@ -111,7 +111,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Header - Hub71 Style */
+    /* Header */
     .site-header {
       background: var(--white);
       height: 80px;
@@ -185,7 +185,7 @@
       stroke-width: 1.5;
       fill: none;
     }
-    /* Accessibility Modal - Hub71 Style */
+    /* Accessibility Modal */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -303,7 +303,7 @@
       fill: none;
     }
 
-    /* Hero Section - Hub71 Style */
+    /* Hero Section */
     .hero {
       background: var(--primary);
       color: var(--white);
@@ -359,9 +359,9 @@
     }
     .geo-shape { animation: rotateGeo 60s linear infinite; }
 
-    /* Value Proposition Bar - Hub71 Style */
+    /* Value Proposition Bar */
     .value-bar {
-      background: var(--hub71-light-blue);
+      background: var(--accent-blue);
       padding: 3.5rem 2rem;
       color: var(--white);
     }
@@ -431,7 +431,7 @@
     @media (min-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
     @media (min-width: 1024px) { .grid.v4 { grid-template-columns: repeat(4, 1fr); } }
 
-    /* Cards - Hub71 Style */
+    /* Cards */
     .card {
       background: var(--white);
       border: 1px solid var(--gray-200);
@@ -447,12 +447,12 @@
       left: 0;
       width: 0;
       height: 3px;
-      background: var(--hub71-green);
+      background: var(--accent-green);
       transition: width .3s ease;
     }
     .card:hover::after { width: 100%; }
     .card:hover {
-      border-color: var(--hub71-green);
+      border-color: var(--accent-green);
       transform: translateY(-4px);
       box-shadow: 0 12px 32px rgba(0, 38, 171, 0.08);
     }
@@ -494,7 +494,7 @@
     }
     .card-tag {
       display: inline-block;
-      background: var(--hub71-green);
+      background: var(--accent-green);
       color: var(--white);
       padding: .4rem 1rem;
       font-size: .65rem;
@@ -634,12 +634,12 @@
     }
     .progress-fill {
       height: 100%;
-      background: var(--hub71-green);
+      background: var(--accent-green);
       border-radius: 0;
       transition: width .4s ease;
     }
 
-    /* Buttons - Hub71 Style */
+    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -703,7 +703,7 @@
       transform: none;
     }
 
-    /* Results Section - Hub71 Style */
+    /* Results Section */
     .result-hero {
       background: var(--primary);
       color: var(--white);
@@ -772,7 +772,7 @@
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
-    .tier-a { background: var(--hub71-green); color: var(--white); }
+    .tier-a { background: var(--accent-green); color: var(--white); }
     .tier-b { background: var(--yellow); color: var(--white); }
     .tier-c { background: var(--accent-orange); color: var(--white); }
 
@@ -797,7 +797,7 @@
       height: 12px;
       border-radius: 0;
     }
-    .score-dot.g { background: var(--hub71-green); }
+    .score-dot.g { background: var(--accent-green); }
     .score-dot.y { background: var(--yellow); }
     .score-dot.r { background: var(--red); }
 
@@ -897,7 +897,7 @@
     }
     .action strong { color: var(--black); }
 
-    /* Success Story - Hub71 Style */
+    /* Success Story */
     .story {
       background: var(--white);
       border: 1px solid var(--gray-200);
@@ -976,7 +976,7 @@
       margin: 0;
     }
 
-    /* Footer - Hub71 Style */
+    /* Footer */
     .footer {
       text-align: center;
       padding: 3rem 2rem;
@@ -1244,28 +1244,28 @@ const C = {
     { id: 'stage', label: 'At what stage is your product currently?', labelAr: 'At what stage is your product currently?', g: 'We have a live product, with real users and paying customers.', gAr: 'We have a live product, with real users and paying customers.', y: 'We have an MVP being tested by initial users/pilot customers.', yAr: 'We have an MVP being tested by initial users/pilot customers.', r: 'We only have an idea or prototype without real usage.', rAr: 'We only have an idea or prototype without real usage.' },
     { id: 'traction', label: 'How do you currently demonstrate that the product is genuinely needed by someone?', labelAr: 'How do you currently demonstrate that the product is genuinely needed by someone?', g: 'We have paying customers and/or recurring transactions (even if small).', gAr: 'We have paying customers and/or recurring transactions (even if small).', y: 'We have active test users and 1–2 LOIs/pilots, but revenue is still low/non-existent.', yAr: 'We have active test users and 1–2 LOIs/pilots, but revenue is still low/non-existent.', r: 'There are no users, pilots, or LOIs yet — only hypotheses.', rAr: 'There are no users, pilots, or LOIs yet — only hypotheses.' },
     { id: 'metrics', label: 'How well do you understand your key fintech metrics (MRR, CAC, LTV, churn)?', labelAr: 'How well do you understand your key fintech metrics (MRR, CAC, LTV, churn)?', g: 'We calculate MRR, CAC, LTV, churn; we can state current figures and approximate LTV/CAC ratio.', gAr: 'We calculate MRR, CAC, LTV, churn; we can state current figures and approximate LTV/CAC ratio.', y: "We know MRR and approximate CAC, but LTV and churn aren't fully calculated yet.", yAr: "We know MRR and approximate CAC, but LTV and churn aren't fully calculated yet.", r: "We don't yet track these metrics and cannot provide even approximate figures.", rAr: "We don't yet track these metrics and cannot provide even approximate figures." },
-    { id: 'regulatory', label: 'How are you managing regulatory matters (ADGM/UAE, licences, compliance)?', labelAr: 'How are you managing regulatory matters (ADGM/UAE, licences, compliance)?', g: 'We already have relevant licences in ADGM/UAE or a clear roadmap with consultants and timelines.', gAr: 'We already have relevant licences in ADGM/UAE or a clear roadmap with consultants and timelines.', y: "We're studying ADGM/UAE requirements and outlining a roadmap, but without a concrete plan/partners yet.", yAr: "We're studying ADGM/UAE requirements and outlining a roadmap, but without a concrete plan/partners yet.", r: "We haven't yet looked into regulation and don't understand what's needed for ADGM/UAE.", rAr: "We haven't yet looked into regulation and don't understand what's needed for ADGM/UAE." },
-    { id: 'market', label: 'Why does it make sense to build/scale a fintech/Web3 start-up specifically through Abu Dhabi / Hub71?', labelAr: 'Why does it make sense to build/scale a fintech/Web3 start-up specifically through Abu Dhabi / Hub71?', g: 'We have a clear case: access to the MENA market, banks/financial organisations, ADGM regulation, and regional partners.', gAr: 'We have a clear case: access to the MENA market, banks/financial organisations, ADGM regulation, and regional partners.', y: "We generally want to expand into MENA and have heard about ADGM/HUB71, but haven't fully articulated a specific case yet.", yAr: "We generally want to expand into MENA and have heard about ADGM/HUB71, but haven't fully articulated a specific case yet.", r: "We cannot explain why Abu Dhabi is necessary specifically for this product (apart from 'there are grants there').", rAr: "We cannot explain why Abu Dhabi is necessary specifically for this product (apart from 'there are grants there')." }
+    { id: 'regulatory', label: 'How are you managing regulatory matters (licences, local compliance, legal structure)?', labelAr: 'How are you managing regulatory matters (licences, local compliance, legal structure)?', g: 'We already have relevant licences or a clear compliance roadmap with consultants and timelines.', gAr: 'We already have relevant licences or a clear compliance roadmap with consultants and timelines.', y: "We're studying local regulatory requirements and outlining a roadmap, but without a concrete plan/partners yet.", yAr: "We're studying local regulatory requirements and outlining a roadmap, but without a concrete plan/partners yet.", r: "We haven't yet looked into regulation and don't understand what local compliance is required.", rAr: "We haven't yet looked into regulation and don't understand what local compliance is required." },
+    { id: 'market', label: 'Why does it make sense to build/scale a fintech/Web3 start-up specifically through this grant programme?', labelAr: 'Why does it make sense to build/scale a fintech/Web3 start-up specifically through this grant programme?', g: 'We have a clear case: access to the MENA market, banks/financial organisations, local regulation, and regional partners.', gAr: 'We have a clear case: access to the MENA market, banks/financial organisations, local regulation, and regional partners.', y: "We generally want to expand into MENA and have heard about the programme, but haven't fully articulated a specific case yet.", yAr: "We generally want to expand into MENA and have heard about the programme, but haven't fully articulated a specific case yet.", r: "We cannot explain why this programme is necessary specifically for this product (apart from 'there are grants there').", rAr: "We cannot explain why this programme is necessary specifically for this product (apart from 'there are grants there')." }
   ],
   ai: [
     { id: 'aicore', label: 'If you remove AI/ML, does your product still make sense?', labelAr: 'If you remove AI/ML, does your product still make sense?', g: "Without AI/ML, the product doesn't work or loses its core value (AI is the kernel of the solution).", gAr: "Without AI/ML, the product doesn't work or loses its core value (AI is the kernel of the solution).", y: 'AI enhances the product, but the core value exists without it.', yAr: 'AI enhances the product, but the core value exists without it.', r: 'AI is more at the marketing/single feature level; the product can easily be imagined without it.', rAr: 'AI is more at the marketing/single feature level; the product can easily be imagined without it.' },
     { id: 'aiteam', label: 'Who in the team is responsible for AI/ML?', labelAr: 'Who in the team is responsible for AI/ML?', g: "We have a founder or core lead with 3+ years' experience in AI/ML and real production implementations / research track record.", gAr: "We have a founder or core lead with 3+ years' experience in AI/ML and real production implementations / research track record.", y: 'We have a developer with ML experience, but without serious production cases or research.', yAr: 'We have a developer with ML experience, but without serious production cases or research.', r: 'No one is explicitly responsible for AI; we use ready-made models/services without deep understanding.', rAr: 'No one is explicitly responsible for AI; we use ready-made models/services without deep understanding.' },
     { id: 'validation', label: 'What has already been done in the real world with your AI solution?', labelAr: 'What has already been done in the real world with your AI solution?', g: 'There are pilots/POCs or paying clients who use our AI product in real processes.', gAr: 'There are pilots/POCs or paying clients who use our AI product in real processes.', y: 'There were limited tests/integrations, but without full pilots and paying clients yet.', yAr: 'There were limited tests/integrations, but without full pilots and paying clients yet.', r: 'Only laboratory experiments/prototypes without interaction with real users/clients.', rAr: 'Only laboratory experiments/prototypes without interaction with real users/clients.' },
     { id: 'modelmetrics', label: 'How do you know that your AI/ML is working well enough?', labelAr: 'How do you know that your AI/ML is working well enough?', g: 'We track key model metrics (accuracy/F1/latency/cost per inference, etc.) and regularly improve them.', gAr: 'We track key model metrics (accuracy/F1/latency/cost per inference, etc.) and regularly improve them.', y: 'We know which metrics are important and sometimes review them, but without systematic improvement yet.', yAr: 'We know which metrics are important and sometimes review them, but without systematic improvement yet.', r: "We don't use any model quality metrics; it just 'seems to work'.", rAr: "We don't use any model quality metrics; it just 'seems to work'." },
-    { id: 'ecosystem', label: 'How are you planning to utilise Abu Dhabi / Hub71+ AI and ecosystem partners (AI71, Core42, cloud partners, etc.)?', labelAr: 'How are you planning to utilise Abu Dhabi / Hub71+ AI and ecosystem partners (AI71, Core42, cloud partners, etc.)?', g: 'We have concrete ideas: where to use local compute/AI platforms/corporate partners, which pilots to launch.', gAr: 'We have concrete ideas: where to use local compute/AI platforms/corporate partners, which pilots to launch.', y: "We understand that we need local partners and resources, but haven't yet formulated specific scenarios.", yAr: "We understand that we need local partners and resources, but haven't yet formulated specific scenarios.", r: "We don't yet see how specifically to utilise Abu Dhabi/Hub71+ AI and the local ecosystem for our AI product.", rAr: "We don't yet see how specifically to utilise Abu Dhabi/Hub71+ AI and the local ecosystem for our AI product." }
+    { id: 'ecosystem', label: "How are you planning to utilise the programme's ecosystem and local partners (compute resources, AI platforms, corporate partners, etc.)?", labelAr: "How are you planning to utilise the programme's ecosystem and local partners (compute resources, AI platforms, corporate partners, etc.)?", g: 'We have concrete ideas: where to use local compute/AI platforms/corporate partners, which pilots to launch.', gAr: 'We have concrete ideas: where to use local compute/AI platforms/corporate partners, which pilots to launch.', y: "We understand that we need local partners and resources, but haven't yet formulated specific scenarios.", yAr: "We understand that we need local partners and resources, but haven't yet formulated specific scenarios.", r: "We don't yet see how specifically to utilise the programme's ecosystem and local resources for our AI product.", rAr: "We don't yet see how specifically to utilise the programme's ecosystem and local resources for our AI product." }
   ],
   climate: [
     { id: 'climatelogic', label: 'What specifically is the climate impact of your solution?', labelAr: 'What specifically is the climate impact of your solution?', g: 'We can clearly explain how our product reduces emissions/increases energy efficiency/manages resources.', gAr: 'We can clearly explain how our product reduces emissions/increases energy efficiency/manages resources.', y: 'We understand there is a climate impact, but describe it in fairly general terms.', yAr: 'We understand there is a climate impact, but describe it in fairly general terms.', r: 'The climate impact is secondary/indirect or not yet articulated.', rAr: 'The climate impact is secondary/indirect or not yet articulated.' },
     { id: 'impactmodel', label: 'How do you assess or plan to assess your climate impact?', labelAr: 'How do you assess or plan to assess your climate impact?', g: 'We have a model/approach (even a rough one) for assessing CO2e reduction, energy/water savings, etc.', gAr: 'We have a model/approach (even a rough one) for assessing CO2e reduction, energy/water savings, etc.', y: "We know which indicators are important to measure, but don't yet have even a rough model/calculations.", yAr: "We know which indicators are important to measure, but don't yet have even a rough model/calculations.", r: "We haven't yet thought about quantitative assessment of climate impact.", rAr: "We haven't yet thought about quantitative assessment of climate impact." },
     { id: 'pilotready', label: 'How ready is your product for a pilot with an infrastructure/energy partner (utility, industry, etc.)?', labelAr: 'How ready is your product for a pilot with an infrastructure/energy partner (utility, industry, etc.)?', g: "There's a working prototype/solution, and we can describe a pilot (what we're testing, with whom, which KPIs).", gAr: "There's a working prototype/solution, and we can describe a pilot (what we're testing, with whom, which KPIs).", y: "There's a product/prototype theoretically ready for a pilot, but without a clear scenario description and KPIs.", yAr: "There's a product/prototype theoretically ready for a pilot, but without a clear scenario description and KPIs.", r: "The product isn't yet in a state where it can be tested with a major partner.", rAr: "The product isn't yet in a state where it can be tested with a major partner." },
     { id: 'partnerships', label: 'Do you have external validation of interest (partners, LOIs, grants, pilots)?', labelAr: 'Do you have external validation of interest (partners, LOIs, grants, pilots)?', g: 'There are ongoing/completed pilots, LOIs, or grant/corporate projects with real results.', gAr: 'There are ongoing/completed pilots, LOIs, or grant/corporate projects with real results.', y: 'There are initial conversations/interest with potential partners, but nothing confirmed.', yAr: 'There are initial conversations/interest with potential partners, but nothing confirmed.', r: 'There are no external signals yet (partners, LOIs, grants, pilots).', rAr: 'There are no external signals yet (partners, LOIs, grants, pilots).' },
-    { id: 'localrelevance', label: 'How does your product relate to the climate goals/challenges of Abu Dhabi/UAE (Net Zero, Climate Strategy, etc.)?', labelAr: 'How does your product relate to the climate goals/challenges of Abu Dhabi/UAE (Net Zero, Climate Strategy, etc.)?', g: 'We can link our solution to specific local tasks/policies (energy, cooling, water, etc.).', gAr: 'We can link our solution to specific local tasks/policies (energy, cooling, water, etc.).', y: "We understand there's demand in the region, but don't link ourselves to specific local initiatives.", yAr: "We understand there's demand in the region, but don't link ourselves to specific local initiatives.", r: "We don't yet see a connection between our solution and Abu Dhabi/UAE's climate agenda.", rAr: "We don't yet see a connection between our solution and Abu Dhabi/UAE's climate agenda." }
+    { id: 'localrelevance', label: 'How does your product relate to the region\'s climate goals/challenges (Net Zero, local Climate Strategy, etc.)?', labelAr: 'How does your product relate to the region\'s climate goals/challenges (Net Zero, local Climate Strategy, etc.)?', g: 'We can link our solution to specific local tasks/policies (energy, cooling, water, etc.).', gAr: 'We can link our solution to specific local tasks/policies (energy, cooling, water, etc.).', y: "We understand there's demand in the region, but don't link ourselves to specific local initiatives.", yAr: "We understand there's demand in the region, but don't link ourselves to specific local initiatives.", r: "We don't yet see a connection between our solution and the region's climate agenda.", rAr: "We don't yet see a connection between our solution and the region's climate agenda." }
   ],
   edtech: [
     { id: 'targetuser', label: 'Who is the primary user and who makes the purchase decision?', labelAr: 'Who is the primary user and who makes the purchase decision?', g: 'The user (pupil/teacher/student/employee) and the decision-maker (parent/school/university/HR) are clearly defined.', gAr: 'The user (pupil/teacher/student/employee) and the decision-maker (parent/school/university/HR) are clearly defined.', y: "We have a general understanding, but the segment is quite broad and it's unclear who makes the final decision.", yAr: "We have a general understanding, but the segment is quite broad and it's unclear who makes the final decision.", r: "We don't have a clear understanding of who our key user is and who pays.", rAr: "We don't have a clear understanding of who our key user is and who pays." },
     { id: 'engagement', label: 'What about engagement and regularity of product use?', labelAr: 'What about engagement and regularity of product use?', g: "There's a stable base of active users with good regularity (e.g., weekly/daily sessions, high completion rate).", gAr: "There's a stable base of active users with good regularity (e.g., weekly/daily sessions, high completion rate).", y: 'There are active users, but usage is unstable (fluctuates significantly, no sustained habit).', yAr: 'There are active users, but usage is unstable (fluctuates significantly, no sustained habit).', r: 'There are only one-off visits; most users quickly drop off.', rAr: 'There are only one-off visits; most users quickly drop off.' },
     { id: 'scaleofuse', label: 'How many active students/teachers/organisations are currently using your product?', labelAr: 'How many active students/teachers/organisations are currently using your product?', g: '1000+ active users or several organisations where the product is genuinely implemented.', gAr: '1000+ active users or several organisations where the product is genuinely implemented.', y: 'Between 100 and 1000 active users, or 1–2 pilot organisations.', yAr: 'Between 100 and 1000 active users, or 1–2 pilot organisations.', r: 'Fewer than 100 active users; tests on a very limited scale.', rAr: 'Fewer than 100 active users; tests on a very limited scale.' },
-    { id: 'regionalfit', label: 'Why does it make sense to scale your EdTech specifically in Abu Dhabi/GCC?', labelAr: 'Why does it make sense to scale your EdTech specifically in Abu Dhabi/GCC?', g: "There's a clear regional fit: language (e.g., Arabic), local curriculum, demand from schools/parents/universities in the region.", gAr: "There's a clear regional fit: language (e.g., Arabic), local curriculum, demand from schools/parents/universities in the region.", y: "We believe in the region's potential, but without specific local adaptations/case studies yet.", yAr: "We believe in the region's potential, but without specific local adaptations/case studies yet.", r: "Our product isn't linked to the region's specifics, and we haven't thought about localisation for GCC.", rAr: "Our product isn't linked to the region's specifics, and we haven't thought about localisation for GCC." }
+    { id: 'regionalfit', label: 'Why does it make sense to scale your EdTech specifically in this region?', labelAr: 'Why does it make sense to scale your EdTech specifically in this region?', g: "There's a clear regional fit: language (e.g., Arabic), local curriculum, demand from schools/parents/universities in the region.", gAr: "There's a clear regional fit: language (e.g., Arabic), local curriculum, demand from schools/parents/universities in the region.", y: "We believe in the region's potential, but without specific local adaptations/case studies yet.", yAr: "We believe in the region's potential, but without specific local adaptations/case studies yet.", r: "Our product isn't linked to the region's specifics, and we haven't thought about localisation for GCC.", rAr: "Our product isn't linked to the region's specifics, and we haven't thought about localisation for GCC." }
   ]
 };
 
@@ -1370,12 +1370,12 @@ const SS = {
     beforeAr: 'لاحظوا أن الشركات لديها أهداف استدامة لكن لا طريقة لتتبعها',
     journey: [
       'Built simple dashboard showing Scope 1, 2, 3 emissions',
-      'Aligned product with UAE Net Zero 2050 requirements',
+      'Aligned product with regional Net Zero 2050 targets',
       'Partnered with one large corporate to validate methodology'
     ],
     journeyAr: [
       'بنوا لوحة بسيطة تظهر انبعاثات النطاق 1 و2 و3',
-      'وافقوا المنتج مع متطلبات صافي الصفر 2050 الإماراتية',
+      'وافقوا المنتج مع أهداف صافي الصفر 2050 الإقليمية',
       'تشاركوا مع شركة كبيرة واحدة للتحقق من المنهجية'
     ],
     lesson: 'They made climate action practical, not just aspirational. Enterprises need tools, not reports.',
@@ -1427,7 +1427,7 @@ const AT = {
   engagement: { a: 'Improve engagement metrics', h: 'Implement gamification, progress tracking', s: '50%+ DAU achieved', t: '3-4 weeks' },
   edpartners: { a: 'Develop institutional partnerships', h: 'Outreach to regional schools/institutions', s: '3+ active discussions', t: '2-4 weeks' },
   scaleofuse: { a: 'Grow active user base', h: 'Launch growth campaigns targeting schools, teachers, learners', s: '1000+ active users or 2+ pilot organisations', t: '4-6 weeks' },
-  regionalfit: { a: 'Develop GCC regional alignment', h: 'Research local curriculum and adapt product for GCC needs', s: 'Documented regional fit and localisation roadmap', t: '2-3 weeks' }
+  regionalfit: { a: 'Develop regional programme alignment', h: 'Research local curriculum and adapt product for regional needs', s: 'Documented regional fit and localisation roadmap', t: '2-3 weeks' }
 };
 
 let step = 1, vert = null, ans = {}, res = null;
