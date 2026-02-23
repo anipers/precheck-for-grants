@@ -686,6 +686,9 @@
       content: ' \2192';
       margin-left: 0.5rem;
     }
+    .btn-back::after {
+      content: ' \2190';
+    }
     .btn-white:hover {
       background: var(--gray-100);
       transform: translateY(-2px);
@@ -1554,6 +1557,7 @@ function drawGauge() {
 }
 
 function render() {
+  window.scrollTo(0, 0);
   const app = $('app');
   const isAr = currentLang === 'ar';
 
@@ -1635,7 +1639,7 @@ function render() {
               <h2>${isAr ? vd.nameAr : vd.name} ${t('assessment')}</h2>
               <p>${t('answerAll')}</p>
             </div>
-            <button class="btn btn-white" onclick="step=1;vert=null;ans={};render()">${t('back')}</button>
+            <button class="btn btn-white btn-back" onclick="step=1;vert=null;ans={};render()">${t('back')}</button>
           </div>
         </div>
 
