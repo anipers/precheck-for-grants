@@ -687,7 +687,11 @@
       margin-left: 0.5rem;
     }
     .btn-back::after {
-      content: ' \2190';
+      content: none;
+    }
+    .btn-back::before {
+      content: '\2190  ';
+      margin-right: 0.25rem;
     }
     .btn-white:hover {
       background: var(--gray-100);
